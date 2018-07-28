@@ -25,6 +25,9 @@ handlers:
 
 - url: /app-stylesheets
   static_dir: app-stylesheets 
+
+- url: /templates/CSS
+  static_dir: CSS
   
 - url: /my-images
   static_dir: my-images
