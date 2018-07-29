@@ -17,6 +17,14 @@
 import webapp2
 import os
 import jinja2
+#import addpy.sessionselect
+#addpy.sessionselect.test()
+from addpy import * 
+
+#this imports all modules under the addpy folder
+#please update the __all__ = [] with specified module names
+
+sessionselect.test()
 
 #remember, you can get this by searching for jinja2 google app engine
 jinja_current_dir = jinja2.Environment(
@@ -30,7 +38,7 @@ jinja_current_dir = jinja2.Environment(
 class WelcomeHandler(webapp2.RequestHandler):
     #This is the welcome page 
     def get(self):
-        jinja_template = jinja_current_dir.get_template("/templates/question.html")
+        jinja_template = jinja_current_dir.get_template("/templates/welcome.html")
         self.response.write(jinja_template.render())
 
 class SessionSelectHandler(webapp2.RequestHandler):

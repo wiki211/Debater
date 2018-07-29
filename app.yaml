@@ -31,7 +31,10 @@ handlers:
   
 - url: /my-images
   static_dir: my-images
-  
+
+- url: /templates
+  static_dir: templates
+  application_readable: true
 #new handlers should go ABOVE the catch all url (.*)
 - url: .*
   script: main.app
