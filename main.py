@@ -24,11 +24,64 @@ jinja_current_dir = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-class MainHandler(webapp2.RequestHandler):
+#The following Handlers are made to 
+#the specification detailed in "Game Design" under User Design
+
+class WelcomeHandler(webapp2.RequestHandler):
+    #This is the welcome page 
     def get(self):
         jinja_template = jinja_current_dir.get_template("/templates/question.html")
         self.response.write(jinja_template.render())
-    
+
+class SessionSelectHandler(webapp2.RequestHandler):
+    #This handler is made to have teams select their rooms
+    def get(self):
+        pass
+
+class TeamSelectHandler(webapp2.RequestHandler):
+    #This handler is made to manage the selection of teams
+    def get(self):
+        pass
+
+class TeamDisplayHandler(webapp2.RequestHandler):
+    #This handler is made to 
+    def get(self):
+        pass
+
+class TopicPresentHandler(webapp2.RequestHandler):
+    #This handler is made to present the debate topic
+    def get(self):
+        pass
+
+class VoteHandler(webapp2.RequestHandler):
+    #This handler is made to handle the votes
+    def get(self):
+        pass
+
+class TimerPresentHandler(webapp2.RequestHandler):
+    #This handler is made to 
+    def get(self):
+        pass
+
+class ContinueHandler(webapp2.RequestHandler):
+    #This handler is made to 
+    def get(self):
+        pass
+
+class EndHandler(webapp2.RequestHandler):
+    #This handler is made to 
+    def get(self):
+        pass
+
+
 app = webapp2.WSGIApplication([
-    ('/', MainHandler),
+    ('/', WelcomeHandler),
+    ('/sess', SessionSelectHandler),
+    ('/teamselect', TeamSelectHandler),
+    ('/teamdisplay', TeamDisplayHandler),
+    ('/topic', TopicPresentHandler),
+    ('/vote', VoteHandler),
+    ('/timer', TimerPresentHandler),
+    ('/continue', ContinueHandler),
+    ('/end', EndHandler),
 ], debug=True)
