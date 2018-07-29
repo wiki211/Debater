@@ -28,7 +28,7 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         jinja_template = jinja_current_dir.get_template("/templates/question.html")
         self.response.write(jinja_template.render())
-
+    
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
 ], debug=True)

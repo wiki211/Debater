@@ -19,12 +19,6 @@ api_version: 1
 threadsafe: yes
 
 handlers:
-- url: /
-  script: /python/home.app
-
-- url: /index\.html
-  script: home.app
-
 - url: /favicon\.ico
   static_files: favicon.ico
   upload: favicon\.ico
@@ -40,13 +34,7 @@ handlers:
   
 #new handlers should go ABOVE the catch all url (.*)
 - url: .*
-  script: /python/main.app
-
-- url: .*
-  script: /python/main.app
-
-- url: .*
-  script: /python/main.app
+  script: main.app
   
 
 libraries:
