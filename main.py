@@ -24,8 +24,6 @@ from addpy import *
 #this imports all modules under the addpy folder
 #please update the __all__ = [] with specified module names
 
-sessionselect.test()
-
 #remember, you can get this by searching for jinja2 google app engine
 jinja_current_dir = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
