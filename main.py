@@ -20,6 +20,7 @@ import jinja2
 #import addpy.sessionselect
 #addpy.sessionselect.test()
 from addpy import * 
+from models import *
 
 #this imports all modules under the addpy folder
 #please update the __all__ = [] with specified module names
