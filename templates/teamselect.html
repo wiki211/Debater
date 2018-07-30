@@ -20,24 +20,37 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-
+<!-- Link to teamselect.css-->
+    <link rel="stylesheet" type="text/css" href="css/teamselect.css">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Delicious!</title>
-    <!--<link rel="stylesheet" type="text/css" href="app-stylesheets/boring-style.css">-->
+    <title>Select your teams!</title>
+
+
   </head>
   <body style="padding-right:5%; padding-left:5%;">
   <!-- s12 m5-->
-    <div class="row">
-      <div class="col">
-        <div class="card-panel teal">
-          <span class="white-text">
-          helLO?
-          {{ topic_content|safe }}
-          </span>
-        </div>
-      </div>
-    </div>
+<div id='instruction'>
+  Choose your team:
+</div>
+
+
+
+<div id='buttons'>
+
+<a class="waves-effect waves-light btn-large #ef5350 red lighten-1">RED TEAM</a>
+<br>
+<br>
+<a class="waves-effect waves-light btn-large #90caf9 blue lighten-3">BLUE TEAM</a>
+<br>
+<br>
+<a class="waves-effect waves-light btn-large #a5d6a7 green lighten-3">GREEN TEAM</a>
+
+</div>
+
+
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
   </body>
 </html>
