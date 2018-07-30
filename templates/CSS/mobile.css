@@ -1,0 +1,17 @@
+#backgroud{
+  background-color: lightcoral
+}
+#Sentence{
+  font-family: 'Heebo', sans-serif;
+  font-size: 50px;
+  border-style:solid; border-color:crimson; padding: 1em;
+  text-align: center;
+}
+#btn2{
+    text-align: center;
+    float: center;
+    border: none;
+    color: white;
+    font-size:14px;
+    font-weight:700;
+}

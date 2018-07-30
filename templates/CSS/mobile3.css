@@ -1,0 +1,17 @@
+#background3{
+  background-color: mediumaquamarine
+}
+#Sentence3{
+  font-family: 'Heebo', sans-serif;
+  font-size: 50px;
+  border-style:solid; border-color:darkcyan; padding: 1em;
+  text-align: center;
+}
+#btn3{
+    text-align: center;
+    float: center;
+    border: none;
+    color: white;
+    font-size:14px;
+    font-weight:700;
+}
