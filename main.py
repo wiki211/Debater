@@ -54,23 +54,35 @@ class TopicPresentHandler(webapp2.RequestHandler):
     def get(self):
         pass
 
+class StancePresentHandler(webapp2.RequestHandler):
+    #This handler is made to present the debate stance - immediately follows TopicPresentHandler
+    """
+    000 – 099 is Food
+    100 – 199 is Miscellaneous
+    200 – 299 is Memes
+    300 – 399 is Pop Culture
+    400 – 499 is Technology
+    """
+    def get(self):
+        pass
+
 class VoteHandler(webapp2.RequestHandler):
     #This handler is made to handle the votes
     def get(self):
         pass
 
 class TimerPresentHandler(webapp2.RequestHandler):
-    #This handler is made to 
+    #This handler is made to present the timer - potential to be merged with StancePresentHandler or given only to judges
     def get(self):
         pass
 
 class ContinueHandler(webapp2.RequestHandler):
-    #This handler is made to 
+    #This handler is made to redirect to next page
     def get(self):
         pass
 
 class EndHandler(webapp2.RequestHandler):
-    #This handler is made to 
+    #This handler is made to display end statistics
     def get(self):
         pass
 
