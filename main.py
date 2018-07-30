@@ -70,29 +70,17 @@ class TopicPresentHandler(webapp2.RequestHandler):
 class StancePresentHandler(webapp2.RequestHandler):
     #This handler is made to present the debate stance - immediately follows TopicPresentHandler
     """
-    000 – 099 is Food
-    100 – 199 is Miscellaneous
-    200 – 299 is Memes
-    300 – 399 is Pop Culture
-    400 – 499 is Technology
+    000.099 is Food
+    100.199 is Miscellaneous
+    200.299 is Memes
+    300.399 is Pop Culture
+    400.499 is Technology
     """
     def get(self):
         jinja_template = jinja_current_dir.get_template("/templates/welcome.html")
         #this is where the function call would go
         self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
         ))
-
-class StancePresentHandler(webapp2.RequestHandler):
-    #This handler is made to present the debate stance - immediately follows TopicPresentHandler
-    """
-    000 – 099 is Food
-    100 – 199 is Miscellaneous
-    200 – 299 is Memes
-    300 – 399 is Pop Culture
-    400 – 499 is Technology
-    """
-    def get(self):
-        pass
 
 class VoteHandler(webapp2.RequestHandler):
     #This handler is made to handle the votes
@@ -126,6 +114,10 @@ class EndHandler(webapp2.RequestHandler):
         self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
         ))
 
+class AboutUsHandler(webapp2.RequestHandler):
+    def get(self):
+        jinja_template = jinja_current_dir.get_template("/templates/Aboutus.html")
+        self.response.write(jinja_template.render())
 
 app = webapp2.WSGIApplication([
     ('/', WelcomeHandler),
@@ -138,4 +130,5 @@ app = webapp2.WSGIApplication([
     ('/continue', ContinueHandler),
     ('/end', EndHandler),
     ('/seed', SeedHandler),
+    ('/aboutus', AboutUsHandler),
 ], debug=True)
