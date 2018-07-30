@@ -15,8 +15,28 @@
  */
 
 
-#buttons {
-padding: 50px 20px;
-width: 250px;
-length: 100px;
+.buttons {
+padding: 30px 24px;
+width: 100%;
+font-family: 'Heebo', sans-serif;
+text-align: center
+
+}
+
+
+#instruction {
+font-size: 20px;
+text-align: center;
+font-family: 'Heebo', sans-serif;
+color: #BBACAC;
+width: 100%;
+margin-top: 40px;
+padding-top: 25px;
+padding-left: 10px;
+padding-right: 10px;
+padding-bottom: 25px;
+border-style: solid;
+border-width: thin;
+border-color: #DBDBDB;
+
 }

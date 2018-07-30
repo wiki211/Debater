@@ -1,0 +1,81 @@
+#title{
+font-family: 'Heebo', sans-serif;
+color: #C8C5C5;
+background: white;
+width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  font-size: 20px;
+  float: left;
+  line-height: 100px;
+text-align: center;
+display: inline-block;
+margin-top: 25px;
+margin-left: 40px;
+position: absolute;
+line-height: 130px;
+
+}
+
+#colorblock{
+  background-color: #CDDEE7;
+    display: block;
+    width: 213px;
+    height: 700px;
+
+}
+
+.buttons {
+color: white;
+margin-top: 13%;
+margin-left: 3%;
+position: absolute;
+text-align: center;
+}
+
+#title1 {
+border-style: solid;
+border-color: #CDDEE7;
+color:#C8C5C5;
+text-align: center;
+font-size: 30px;
+margin-top:3%;
+margin-left: 33%;
+width: 50%;
+height: 100px;
+line-height: 100px;
+font-family: georgia;
+font-size: 48px;
+position:absolute;
+border-width: thin;
+}
+
+#chris {
+width: 200px;
+height: 200px;
+margin-top: 14%;
+margin-left: 25%;
+position:absolute;
+}
+
+.college1 {
+
+  margin-top: 29%;
+  margin-left: 26%;
+position: absolute;
+text-align: center;
+}
+#michelle {
+width: 200px;
+height: 200px;
+margin-top: 14%;
+margin-left: 75%;
+position:absolute;
+}
+
+.college3 {
+  margin-top: 29%;
+  margin-left:76%;
+  position: absolute;
+text-align: center;
+}
