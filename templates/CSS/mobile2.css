@@ -1,11 +1,12 @@
 #backgroud2{
-  background-color: papayawhip
+  background-color: gold
 }
 #Sentence2{
   font-family: 'Heebo', sans-serif;
   font-size: 50px;
-  border-style:solid; border-color:peachpuff; padding: 1em;
+  border-style:solid; border-color:moccasin; padding: 1em;
   text-align: center;
+  color: white
 }
 #btn1{
     text-align: center;
