@@ -1,18 +1,4 @@
 #!/usr/bin/python
-#
-# Copyright 2018 Google LLC
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
 
 import webapp2
 import os
@@ -33,6 +19,14 @@ jinja_current_dir = jinja2.Environment(
 
 #The following Handlers are made to 
 #the specification detailed in "Game Design" under User Design
+
+#Data seeding is provided by the following functions:
+#dataimport.importdata(dataimport.getdata("/Users/demouser/Desktop/cssi-project/Debater/data/topics_cssi.csv"))
+
+class SeedHandler(webapp2.RequestHandler):
+    def get(self):
+        dataimport.importdata(dataimport.getdata(
+            "/Users/demouser/Desktop/cssi-project/Debater/data/topics_cssi.csv"))
 
 class WelcomeHandler(webapp2.RequestHandler):
     #This is the welcome page 
