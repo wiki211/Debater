@@ -85,4 +85,5 @@ app = webapp2.WSGIApplication([
     ('/timer', TimerPresentHandler),
     ('/continue', ContinueHandler),
     ('/end', EndHandler),
+    ('/seed', SeedHandler),
 ], debug=True)
