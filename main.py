@@ -1,18 +1,4 @@
 #!/usr/bin/python
-#
-# Copyright 2018 Google LLC
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
 
 import webapp2
 import os
@@ -33,6 +19,14 @@ jinja_current_dir = jinja2.Environment(
 
 #The following Handlers are made to 
 #the specification detailed in "Game Design" under User Design
+
+#Data seeding is provided by the following functions:
+#dataimport.importdata(dataimport.getdata("/Users/demouser/Desktop/cssi-project/Debater/data/topics_cssi.csv"))
+
+class SeedHandler(webapp2.RequestHandler):
+    def get(self):
+        dataimport.importdata(dataimport.getdata(
+            "/Users/demouser/Desktop/cssi-project/Debater/data/topics_cssi.csv"))
 
 class WelcomeHandler(webapp2.RequestHandler):
     #This is the welcome page 
@@ -60,23 +54,35 @@ class TopicPresentHandler(webapp2.RequestHandler):
     def get(self):
         pass
 
+class StancePresentHandler(webapp2.RequestHandler):
+    #This handler is made to present the debate stance - immediately follows TopicPresentHandler
+    """
+    000 – 099 is Food
+    100 – 199 is Miscellaneous
+    200 – 299 is Memes
+    300 – 399 is Pop Culture
+    400 – 499 is Technology
+    """
+    def get(self):
+        pass
+
 class VoteHandler(webapp2.RequestHandler):
     #This handler is made to handle the votes
     def get(self):
         pass
 
 class TimerPresentHandler(webapp2.RequestHandler):
-    #This handler is made to 
+    #This handler is made to present the timer - potential to be merged with StancePresentHandler or given only to judges
     def get(self):
         pass
 
 class ContinueHandler(webapp2.RequestHandler):
-    #This handler is made to 
+    #This handler is made to redirect to next page
     def get(self):
         pass
 
 class EndHandler(webapp2.RequestHandler):
-    #This handler is made to 
+    #This handler is made to display end statistics
     def get(self):
         pass
 
@@ -91,4 +97,5 @@ app = webapp2.WSGIApplication([
     ('/timer', TimerPresentHandler),
     ('/continue', ContinueHandler),
     ('/end', EndHandler),
+    ('/seed', SeedHandler),
 ], debug=True)

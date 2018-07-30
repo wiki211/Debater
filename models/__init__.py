@@ -1,1 +1,1 @@
-__all__ = ["adminmodels", "contentmodels", "usermodels"]
+__all__ = ["adminmodels", "contentmodels", "usermodels","genfunc"]
