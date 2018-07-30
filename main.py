@@ -82,6 +82,18 @@ class StancePresentHandler(webapp2.RequestHandler):
         self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
         ))
 
+class StancePresentHandler(webapp2.RequestHandler):
+    #This handler is made to present the debate stance - immediately follows TopicPresentHandler
+    """
+    000 – 099 is Food
+    100 – 199 is Miscellaneous
+    200 – 299 is Memes
+    300 – 399 is Pop Culture
+    400 – 499 is Technology
+    """
+    def get(self):
+        pass
+
 class VoteHandler(webapp2.RequestHandler):
     #This handler is made to handle the votes
     def get(self):
