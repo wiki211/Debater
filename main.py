@@ -47,9 +47,10 @@ class TeamSelectHandler(webapp2.RequestHandler):
     #This handler is made to manage the selection of teams
     def get(self):
         jinja_template = jinja_current_dir.get_template("/templates/welcome.html")
-        #this is where the function call would go
-        self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
+        #NEED TO DEFINE TOPIC_CATEGORY
+        self.response.write(jinja_template.render(  # this is where the dictionary files would be pushed
         ))
+
 
 class TeamDisplayHandler(webapp2.RequestHandler):
     #This handler is made to 
@@ -62,10 +63,10 @@ class TeamDisplayHandler(webapp2.RequestHandler):
 class TopicPresentHandler(webapp2.RequestHandler):
     #This handler is made to present the debate topic
     def get(self):
-        jinja_template = jinja_current_dir.get_template("/templates/welcome.html")
+        jinja_template = jinja_current_dir.get_template("/templates/topicpresent.html")
         #this is where the function call would go
-        self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
-        ))
+        topicval = topicpresent.exfield("Topics","topic_category","",shuffle=True)
+        self.response.write(jinja_template.render(topicval))
 
 class StancePresentHandler(webapp2.RequestHandler):
     #This handler is made to present the debate stance - immediately follows TopicPresentHandler

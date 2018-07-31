@@ -3,13 +3,20 @@ from google.appengine.ext import ndb
 def cleartype(modeltype):
     db.delete(modeltype)
 """
+from models import contentmodels
 
 def cleartype(modeltype):
     ndb.delete_multi(modeltype.query().fetch(keys_only=True))
 
-def queryfield(modeltype, modprop, contentfilt="", typefilter=True):
-    if typefilter:
+def queryfield(modeltype, modprop="", contentfilt="", typefilter=True):
+    if (modprop==""):
+        return (modeltype.query().fetch())
+    elif typefilter:
         return modeltype.query().filter(modeltype.modprop==str(contentfilt)).fetch()
     else:
         return modeltype.query().order(modeltype.modprop).fetch()
 
+def excludefield(modeltype, modprop, contentfilt=""):
+    prefix = eval("contentmodels."+modeltype)
+    #print(prefix.query().filter(eval("contentmodels." +modeltype+"."+modprop) != str(contentfilt)).fetch())
+    return prefix.query().filter(eval("contentmodels."+modeltype+"."+modprop) != str(contentfilt)).fetch()
