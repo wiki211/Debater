@@ -1,8 +1,10 @@
 from google.appengine.ext import ndb
 
-class boolstore(ndb.Model):
+class Otherdatastore(ndb.Model):
     propname = ndb.StringProperty(required=True)
-    boolval = ndb.BooleanProperty(required=True)
+    genval = ndb.IntegerProperty(repeated=True)
+    #otherdatastore is a kind of heuristics, like unavailable sessids, etc. 
+
 """
 def modifyndb(typeclass, inpname, selectvalue):
     if typeclass.query().filter(typeclass.propname == inpname).fetch() == []:
@@ -13,3 +15,11 @@ def modifyndb(typeclass, inpname, selectvalue):
         dd.boolval = selectvalue
         dd.put()
 """
+
+class Sessions(ndb.Model):
+    sessid = ndb.IntegerProperty(required=True) #8 digit number that allows room entrance
+    playernames  = ndb.StringProperty(repeated=True) #list of player names
+    #list of votes for and against a team. Structured as a 3x3 matrix,
+    #where each row represents a game and each column a team
+    #structure is nested lists, stored a string before input
+    vote_game = ndb.StringProperty(required=True)

@@ -3,7 +3,7 @@ import sys
 import os
 sys.path.insert(0, '/Users/demouser/Desktop/cssi-project/Debater/')
 #these are necessary to change the syspath
-from models import contentmodels,genfunc
+from models import adminmodels, contentmodels, genfunc
 
 def getdata(pathtofile):
     fullpath = os.path.expanduser(str(pathtofile))
@@ -23,6 +23,7 @@ def importdata(impdata):
         if r[0] != "": #check to see if the topic is empty
             n+=1
     return n
+
 
 #data = getdata("/Users/demouser/Desktop/cssi-project/Debater/data/topics_cssi.csv")
 

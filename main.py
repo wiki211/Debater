@@ -26,7 +26,7 @@ jinja_current_dir = jinja2.Environment(
 class SeedHandler(webapp2.RequestHandler):
     def get(self):
         dataimport.importdata(dataimport.getdata(
-            "/Users/demouser/Desktop/cssi-project/Debater/data/topics_cssi.csv"))
+            "./data/topics_cssi.csv"))
 
 class WelcomeHandler(webapp2.RequestHandler):
     #This is the welcome page 
@@ -34,6 +34,15 @@ class WelcomeHandler(webapp2.RequestHandler):
         jinja_template = jinja_current_dir.get_template("/templates/welcome.html")
 
         self.response.write(jinja_template.render())
+
+class SessionProvideHandler(webapp2.RequestHandler):
+    #This is the session code providing area 
+    def get(self):
+        jinja_template = jinja_current_dir.get_template("/templates/welcome.html")
+        sessionid = sessionprovide.getsessionid()
+        sessionprovide.createsess(sessionid, score='[[0,0,0],[0,0,0],[0,0,0]]')
+        self.response.set_cookie(key="sessionid", value=str(sessionid))
+        self.response.write(jinja_template.render({"session_id":sessionid}))
 
 class SessionSelectHandler(webapp2.RequestHandler):
     #This handler is made to have teams select their rooms
@@ -122,6 +131,7 @@ class AboutUsHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', WelcomeHandler),
+    ('/begin', SessionProvideHandler),
     ('/sess', SessionSelectHandler),
     ('/teamselect', TeamSelectHandler),
     ('/teamdisplay', TeamDisplayHandler),

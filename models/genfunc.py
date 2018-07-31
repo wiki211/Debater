@@ -12,9 +12,9 @@ def queryfield(modeltype, modprop="", contentfilt="", typefilter=True):
     if (modprop==""):
         return (modeltype.query().fetch())
     elif typefilter:
-        return modeltype.query().filter(modeltype.modprop==str(contentfilt)).fetch()
+        return modeltype.query().filter(eval("modeltype."+modprop)==str(contentfilt)).fetch()
     else:
-        return modeltype.query().order(modeltype.modprop).fetch()
+        return modeltype.query().order(eval("modeltype."+modprop)).fetch()
 
 def excludefield(modeltype, modprop, contentfilt=""):
     prefix = eval("contentmodels."+modeltype)
