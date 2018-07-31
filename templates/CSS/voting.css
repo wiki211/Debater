@@ -1,0 +1,46 @@
+.split{
+  height: 100%;
+  width: 50%;
+  position:fixed;
+  z-index:1;
+  top:0
+  padding-top:20px
+}
+
+.left{
+  left: 0;
+  background-color:#66CDAA
+}
+
+.right{
+  right:0;
+  background-color:#DAF7A6
+}
+
+#Question{
+  font-family: 'Heebo', sans-serif;
+  font-size: 20px;
+  border-style:solid; border-color:#008B8B; padding: 1em;
+  text-align: center;
+  color: black
+}
+
+#btna{
+    text-align: center;
+    float: center;
+    border: none;
+    color: white;
+    font-size:14px;
+    font-weight:700;
+    background-color:
+}
+
+#btna2{
+    text-align: center;
+    float: center;
+    border: none;
+    color: white;
+    font-size:14px;
+    font-weight:700;
+    background-color: 
+}
