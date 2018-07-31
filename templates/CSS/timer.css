@@ -1,0 +1,11 @@
+#timer{
+  font-size: 100px;
+    text-align: center;
+    float: center;
+    border-style: double; border-color:lightsalmon; padding: 1em; border-radius: 5px; 
+    color: white;
+
+}
+#body{
+  background-color: peachpuff
+}

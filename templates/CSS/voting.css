@@ -32,7 +32,11 @@
     color: white;
     font-size:14px;
     font-weight:700;
-    background-color:
+    background-color: darkseagreen;
+    margin-bottom: -600px;
+    width: 200px;
+
+
 }
 
 #btna2{
@@ -42,5 +46,7 @@
     color: white;
     font-size:14px;
     font-weight:700;
-    
+    background-color: turquoise;
+    margin-bottom: -600px;
+    width: 200px
 }
