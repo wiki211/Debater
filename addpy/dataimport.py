@@ -3,11 +3,7 @@ import sys
 import os
 sys.path.insert(0, '../')
 #these are necessary to change the syspath
-<<<<<<< HEAD
 from models import adminmodels, contentmodels, genfunc
-=======
-from models import contentmodels, genfunc
->>>>>>> Michelle
 
 def getdata(pathtofile):
     fullpath = os.path.expanduser(str(pathtofile))
