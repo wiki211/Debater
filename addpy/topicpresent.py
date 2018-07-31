@@ -1,3 +1,4 @@
+"""
 import sys
 sys.path.insert(0, '/Users/demouser/Desktop/cssi-project/Debater/')
 from models import contentmodels, genfunc
@@ -20,3 +21,4 @@ def exfield(modeltype, modprop, contentfilt="", shuffle=False):
         random.shuffle(outval)
     outputdict = {"topic": outval}
     return outputdict
+"""
