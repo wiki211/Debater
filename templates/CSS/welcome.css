@@ -1,27 +1,21 @@
-#hello{
+#one{
+background-color: #F3F3F3;
+
+}
+
+.color{
 background-color: #CDDEE7;
-height: 350px;
-
+position: sticky;
 }
-
-#title{
-color:white;
-
-font-family: 'Heebo', sans-serif;
-font-size: 40px;
-position: absolute;
-margin-left: 50px;
-}
-
 
 
 #slogan{
-position: fixed;
+position: absolute;
 font-family: Georgia;
 font-size: 25px;
 color:#808080;
 margin-left: 50px;
-margin-top: 260px;
+margin-top: 250px;
 background-color: white;
 padding-left: 30px;
 padding-right: 30px;
@@ -38,6 +32,7 @@ box-shadow:5px 10px #CDDEE7;
       background-color: #CDDEE7;
       color: white;
       text-align: center;
+      height: 50px;
 }
 
 
@@ -51,7 +46,7 @@ position: absolute;
 
 #img{
 height: 400px;
-margin-top: 170px;
-margin-left: 850px;
+margin-top: 100px;
+margin-left: 890px;
 box-shadow: 5px 10px #888888;
 }
