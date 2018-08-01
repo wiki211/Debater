@@ -38,16 +38,15 @@ class WelcomeHandler(webapp2.RequestHandler):
 class SessionProvideHandler(webapp2.RequestHandler):
     #This is the session code providing area 
     def get(self):
-        jinja_template = jinja_current_dir.get_template("/templates/welcome.html")
+        jinja_template = jinja_current_dir.get_template("/templates/sessionprovide.html")
         sessionid = sessionprovide.getsessionid()
-        sessionprovide.createsess(sessionid, score='[[0,0,0],[0,0,0],[0,0,0]]')
         self.response.set_cookie(key="sessionid", value=str(sessionid))
         self.response.write(jinja_template.render({"session_id":sessionid}))
 
 class SessionSelectHandler(webapp2.RequestHandler):
     #This handler is made to have teams select their rooms
     def get(self):
-        jinja_template = jinja_current_dir.get_template("/templates/welcome.html")
+        jinja_template = jinja_current_dir.get_template("/templates/sessionselect.html")
         #this is where the function call would go
         self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
         ))
@@ -55,7 +54,7 @@ class SessionSelectHandler(webapp2.RequestHandler):
 class TeamSelectHandler(webapp2.RequestHandler):
     #This handler is made to manage the selection of teams
     def get(self):
-        jinja_template = jinja_current_dir.get_template("/templates/welcome.html")
+        jinja_template = jinja_current_dir.get_template("/templates/teamselect.html")
         #NEED TO DEFINE TOPIC_CATEGORY
         self.response.write(jinja_template.render(  # this is where the dictionary files would be pushed
         ))
@@ -64,7 +63,7 @@ class TeamSelectHandler(webapp2.RequestHandler):
 class TeamDisplayHandler(webapp2.RequestHandler):
     #This handler is made to 
     def get(self):
-        jinja_template = jinja_current_dir.get_template("/templates/welcome.html")
+        jinja_template = jinja_current_dir.get_template("/templates/teamdisplay.html")
         #this is where the function call would go
         self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
         ))
@@ -87,7 +86,7 @@ class StancePresentHandler(webapp2.RequestHandler):
     400.499 is Technology
     """
     def get(self):
-        jinja_template = jinja_current_dir.get_template("/templates/welcome.html")
+        jinja_template = jinja_current_dir.get_template("/templates/stancepresent.html")
         #this is where the function call would go
         self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
         ))
@@ -95,7 +94,7 @@ class StancePresentHandler(webapp2.RequestHandler):
 class VoteHandler(webapp2.RequestHandler):
     #This handler is made to handle the votes
     def get(self):
-        jinja_template = jinja_current_dir.get_template("/templates/welcome.html")
+        jinja_template = jinja_current_dir.get_template("/templates/voting.html")
         #this is where the function call would go
         self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
         ))
@@ -103,7 +102,7 @@ class VoteHandler(webapp2.RequestHandler):
 class TimerPresentHandler(webapp2.RequestHandler):
     #This handler is made to present the timer - potential to be merged with StancePresentHandler or given only to judges
     def get(self):
-        jinja_template = jinja_current_dir.get_template("/templates/welcome.html")
+        jinja_template = jinja_current_dir.get_template("/templates/timer.html")
         #this is where the function call would go
         self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
         ))
@@ -119,7 +118,7 @@ class ContinueHandler(webapp2.RequestHandler):
 class EndHandler(webapp2.RequestHandler):
     #This handler is made to display end statistics
     def get(self):
-        jinja_template = jinja_current_dir.get_template("/templates/welcome.html")
+        jinja_template = jinja_current_dir.get_template("/templates/end.html")
         #this is where the function call would go
         self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
         ))

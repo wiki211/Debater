@@ -20,8 +20,8 @@ handlers:
 - url: /templates/CSS
   static_dir: CSS
 
-- url: /templates/JS
-  static_dir: JS
+- url: /JS
+  static_dir: /templates/JS
 
 - url: /favicon\.ico
   static_files: favicon.ico

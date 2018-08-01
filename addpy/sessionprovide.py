@@ -3,6 +3,10 @@ sys.path.insert(0, '../')
 from models import *
 import random
 
+def createsess(inputsessid, score='[]'):
+    dd = adminmodels.Sessions(sessid=inputsessid,vote_game=score)
+    dd.put()
+
 def getsessionid():
     # array of previous values
     sess_id = genfunc.queryfield(adminmodels.Otherdatastore, "propname", "sessionids" )
@@ -23,8 +27,6 @@ def getsessionid():
             new_sess_id = random.randint(10000000,99999999)
         sess_id[0].genval.append(new_sess_id)
         sess_id[0].put()
+    #make session entity code HEREEEEE
+    createsess(new_sess_id, score='[[0,0,0],[0,0,0],[0,0,0]]')
     return new_sess_id
-
-def createsess(inputsessid, score='[]'):
-    dd = adminmodels.Sessions(sessid=inputsessid,vote_game=score)
-    dd.put()
