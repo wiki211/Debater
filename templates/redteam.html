@@ -20,49 +20,24 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-<!-- Link to teamselect.css-->
-    <link rel="stylesheet" type="text/css" href="CSS/teamselect.css">
-
-    <link href="https://fonts.googleapis.com/css?family=Heebo:300" rel="stylesheet">
+<link rel="stylesheet" href="CSS/red.css">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Debater</title>
 
-
-    <title>Select your teams!</title>
-
-
+    <!--<link rel="stylesheet" type="text/css" href="app-stylesheets/boring-style.css">-->
   </head>
-  <body style="padding-right:5%; padding-left:5%;">
+  <body style="padding-right:5%; padding-left:5%; background-color:#FF9595">
   <!-- s12 m5-->
-<div id='instruction'>
-  Choose your team:
-</div>
+<p id='red'>You're on the Red Team. Get together with your teammates!</p>
 
+<script type="text/javascript">
+setTimeout(function () {
+ window.location.href= '/begin'; // the redirect goes here
 
+},10000);
 
-<!-- RANDOMIZE the different t -->
-
-<div class='buttons'>
-<form class="" action="index.html" method="post">
-
-<a class="waves-effect waves-light btn-large #ef5350 red lighten-1">RED TEAM</a>
-</form>
-<br>
-<br>
-<form class="" action="index.html" method="post">
-<a class="waves-effect waves-light btn-large #26c6da cyan lighten-1">BLUE TEAM</a>
-</form>
-<br>
-<form class="" action="index.html" method="post">
-
-
-<a class="waves-effect waves-light btn-large #a5d6a7 green lighten-3">GREEN TEAM</a>
-</form>
-</div>
-
-
-
-
+</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
   </body>
 </html>
