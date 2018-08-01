@@ -38,10 +38,11 @@ class WelcomeHandler(webapp2.RequestHandler):
 class SessionProvideHandler(webapp2.RequestHandler):
     #This is the session code providing area 
     def get(self):
-        jinja_template = jinja_current_dir.get_template("/templates/sessionprovide.html")
+        jinja_template = jinja_current_dir.get_template("/templates/classcode.html")
         sessionid = sessionprovide.getsessionid()
         self.response.set_cookie(key="sessionid", value=str(sessionid))
-        self.response.write(jinja_template.render({"session_id":sessionid}))
+        val = {"session_id":sessionid}
+        self.response.write(jinja_template.render(val))
 
 class SessionSelectHandler(webapp2.RequestHandler):
     #This handler is made to have teams select their rooms
