@@ -1,76 +1,32 @@
-#title{
-font-family: 'Heebo', sans-serif;
-color: #C8C5C5;
-background: white;
-width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  font-size: 20px;
-  float: left;
-  line-height: 100px;
-text-align: center;
-display: inline-block;
-margin-top: 25px;
-margin-left: 40px;
-position: absolute;
-line-height: 130px;
 
-}
 
-#colorblock{
-  background-color: #CDDEE7;
-    display: block;
-    width: 213px;
-    height: 700px;
 
-}
+#size{
+  width: 250px;
+  height: 250px;
 
-.buttons {
-color: white;
-margin-top: 200px;
-margin-left: 43px;
-position: absolute;
-text-align: center;
-}
-
-#title1 {
-
-color:#C8C5C5;
-text-align: center;
-
-font-family: georgia;
-font-size: 48px;
-position: fixed;
-margin-left: 600px;
-margin-top: 75px;
 }
 
 #chris {
-width: 200px;
-height: 200px;
-margin-top: 210px;
-margin-left: 360px;
-position:absolute;
+width: 250px;
+height: 250px;
+
 }
 
-.college1 {
+.bio1{
+margin-left: 10%;
+margin-top: 10%;
+display: inline-block;
 
-  margin-top: 410px;
-  margin-left: 370px;
-position: absolute;
-text-align: center;
-}
-#michelle {
-width: 200px;
-height: 200px;
-margin-top: 210px;
-margin-left: 1070px;
-position:absolute;
 }
 
-.college3 {
-  margin-top: 410px;
-  margin-left:1080px;
-  position: absolute;
-text-align: center;
+.bio2{
+display: inline-block;
+flex: wrap;
+}
+
+.bio3{
+
+display: inline-block;
+flex: wrap;
 }
