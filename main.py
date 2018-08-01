@@ -5,7 +5,7 @@ import os
 import jinja2
 #import addpy.sessionselect
 #addpy.sessionselect.test()
-from addpy import * 
+from addpy import *
 from models import *
 
 #this imports all modules under the addpy folder
@@ -17,7 +17,7 @@ jinja_current_dir = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-#The following Handlers are made to 
+#The following Handlers are made to
 #the specification detailed in "Game Design" under User Design
 
 #Data seeding is provided by the following functions:
@@ -29,20 +29,35 @@ class SeedHandler(webapp2.RequestHandler):
             "./data/topics_cssi.csv"))
 
 class WelcomeHandler(webapp2.RequestHandler):
-    #This is the welcome page 
+    #This is the welcome page
     def get(self):
         jinja_template = jinja_current_dir.get_template("/templates/welcome.html")
-
         self.response.write(jinja_template.render())
 
+class LoadingHandler(webapp2.RequestHandler):
+    #This is the welcome page
+    def get(self):
+        jinja_template = jinja_current_dir.get_template("/templates/loading.html")
+        self.response.write(jinja_template.render())
+
+    def post(self):
+        self.response.write(jinja_template.render())
+
+
 class SessionProvideHandler(webapp2.RequestHandler):
-    #This is the session code providing area 
+    #This is the session code providing area
     def get(self):
         jinja_template = jinja_current_dir.get_template("/templates/classcode.html")
         sessionid = sessionprovide.getsessionid()
         self.response.set_cookie(key="sessionid", value=str(sessionid))
         val = {"session_id":sessionid}
         self.response.write(jinja_template.render(val))
+
+class Round1Handler(webapp2.RequestHandler):
+    #This is the Loading page for round one
+    def get(self):
+        jinja_template = jinja_current_dir.get_template("/templates/round1.html")
+        self.response.write(jinja_template.render())
 
 class SessionSelectHandler(webapp2.RequestHandler):
     #This handler is made to have teams select their rooms
@@ -68,7 +83,7 @@ class TeamSelectHandler(webapp2.RequestHandler):
 
 
 class TeamDisplayHandler(webapp2.RequestHandler):
-    #This handler is made to 
+    #This handler is made to
     def get(self):
         jinja_template = jinja_current_dir.get_template("/templates/teamdisplay.html")
         #this is where the function call would go
@@ -137,7 +152,9 @@ class AboutUsHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', WelcomeHandler),
+    ('/loading',LoadingHandler),
     ('/begin', SessionProvideHandler),
+    ('/round1', Round1Handler),
     ('/sess', SessionSelectHandler),
     ('/teamselect', TeamSelectHandler),
     ('/teamdisplay', TeamDisplayHandler),

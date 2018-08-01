@@ -27,55 +27,50 @@ line-height: 130px;
 
 .buttons {
 color: white;
-margin-top: 13%;
-margin-left: 3%;
+margin-top: 200px;
+margin-left: 43px;
 position: absolute;
 text-align: center;
 }
 
 #title1 {
-border-style: solid;
-border-color: #CDDEE7;
+
 color:#C8C5C5;
 text-align: center;
-font-size: 30px;
-margin-top:3%;
-margin-left: 33%;
-width: 50%;
-height: 100px;
-line-height: 100px;
+
 font-family: georgia;
 font-size: 48px;
-position:absolute;
-border-width: thin;
+position: fixed;
+margin-left: 600px;
+margin-top: 75px;
 }
 
 #chris {
 width: 200px;
 height: 200px;
-margin-top: 14%;
-margin-left: 25%;
+margin-top: 210px;
+margin-left: 360px;
 position:absolute;
 }
 
 .college1 {
 
-  margin-top: 29%;
-  margin-left: 26%;
+  margin-top: 410px;
+  margin-left: 370px;
 position: absolute;
 text-align: center;
 }
 #michelle {
 width: 200px;
 height: 200px;
-margin-top: 14%;
-margin-left: 75%;
+margin-top: 210px;
+margin-left: 1070px;
 position:absolute;
 }
 
 .college3 {
-  margin-top: 29%;
-  margin-left:76%;
+  margin-top: 410px;
+  margin-left:1080px;
   position: absolute;
 text-align: center;
 }
