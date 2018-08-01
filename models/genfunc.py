@@ -12,7 +12,7 @@ def queryfield(modeltype, modprop="", contentfilt="", typefilter=True):
     if (modprop==""):
         return (modeltype.query().fetch())
     elif typefilter:
-        return modeltype.query().filter(eval("modeltype."+modprop)==str(contentfilt)).fetch()
+        return modeltype.query().filter(eval("modeltype."+modprop)==(contentfilt)).fetch()
     else:
         return modeltype.query().order(eval("modeltype."+modprop)).fetch()
 

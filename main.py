@@ -54,7 +54,7 @@ class SessionSelectHandler(webapp2.RequestHandler):
     def post(self):
         jinja_template = jinja_current_dir.get_template("/templates/sessionselect.html")
         #this is where the function call would go
-        sessionselect.checksessionid("USERINPUT")
+        
         self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
         ))
 
@@ -65,6 +65,8 @@ class TeamSelectHandler(webapp2.RequestHandler):
         #NEED TO DEFINE TOPIC_CATEGORY
         self.response.write(jinja_template.render(  # this is where the dictionary files would be pushed
         ))
+    def post(self): #this is after session mgmt
+        sessioncode = self.request.cookies.get("sessionid")        
 
 
 class TeamDisplayHandler(webapp2.RequestHandler):
@@ -135,6 +137,14 @@ class AboutUsHandler(webapp2.RequestHandler):
         jinja_template = jinja_current_dir.get_template("/templates/Aboutus.html")
         self.response.write(jinja_template.render())
 
+class SessionChecker(webapp2.RequestHandler): #returns TRUE if the sessid exists, otherwise returns FALSE
+    def get(self):
+        usersessid = int(self.request.get('input_text'))
+        if (sessionselect.checksessionid(usersessid)):
+            self.response.write("True")
+        else:
+            self.response.write("False")
+
 app = webapp2.WSGIApplication([
     ('/', WelcomeHandler),
     ('/begin', SessionProvideHandler),
@@ -148,4 +158,5 @@ app = webapp2.WSGIApplication([
     ('/end', EndHandler),
     ('/seed', SeedHandler),
     ('/aboutus', AboutUsHandler),
+    ('/check/session.*', SessionChecker),
 ], debug=True)
