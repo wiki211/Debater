@@ -1,11 +1,29 @@
 #timer{
-  font-size: 100px;
-    text-align: center;
-    float: center;
-    border-style: double; border-color:lightsalmon; padding: 1em; border-radius: 5px; 
-    color: white;
+  font-size: 90px;
+  text-align: center;
+  float: center;
+  border-style: double; border-color:lightsalmon; padding: 1em; border-radius: 5px; border-width: 10px;
+  color: white;
 
 }
+
 #body{
   background-color: peachpuff
+}
+
+#Statement{
+  color: white;
+  bottom: -200px;
+  font-size: 50px;
+  float: center;
+  valign: center;
+  position: relative;
+  top:40px;
+}
+
+#Statement2{
+  font-size: 50px;
+  color: white;
+  position:relative;
+  bottom: 40px
 }
