@@ -1,8 +1,57 @@
-#colorblock {
+#hello{
 background-color: #CDDEE7;
-margin-top: 0px;
+height: 350px;
 
-height: 5px;
+}
+
+#title{
+color:white;
+
+font-family: 'Heebo', sans-serif;
+font-size: 40px;
+position: absolute;
+margin-left: 50px;
+}
 
 
+
+#slogan{
+position: fixed;
+font-family: Georgia;
+font-size: 25px;
+color:#808080;
+margin-left: 50px;
+margin-top: 260px;
+background-color: white;
+padding-left: 30px;
+padding-right: 30px;
+padding-top: 50px;
+padding-bottom: 50px;
+box-shadow:5px 10px #CDDEE7;
+}
+
+.footer{
+  position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: #CDDEE7;
+      color: white;
+      text-align: center;
+}
+
+
+
+#buttons{
+margin-left: 1050px;
+margin-top: 55px;
+position: absolute;
+
+}
+
+#img{
+height: 400px;
+margin-top: 170px;
+margin-left: 850px;
+box-shadow: 5px 10px #888888;
 }
