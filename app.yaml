@@ -17,11 +17,11 @@ api_version: 1
 threadsafe: yes
 
 handlers:
-- url: /templates/CSS
-  static_dir: CSS
+- url: /CSS
+  static_dir: templates/CSS
 
 - url: /JS
-  static_dir: /templates/JS
+  static_dir: templates/JS
 
 - url: /favicon\.ico
   static_files: favicon.ico

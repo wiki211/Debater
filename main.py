@@ -50,6 +50,12 @@ class SessionSelectHandler(webapp2.RequestHandler):
         #this is where the function call would go
         self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
         ))
+    def post(self):
+        jinja_template = jinja_current_dir.get_template("/templates/sessionselect.html")
+        #this is where the function call would go
+        sessionselect.checksessionid("USERINPUT")
+        self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
+        ))
 
 class TeamSelectHandler(webapp2.RequestHandler):
     #This handler is made to manage the selection of teams
