@@ -1,0 +1,22 @@
+#btna{
+
+display: inline-block;
+  color: white;
+  background-color: darkblue
+}
+
+#btnb{
+  display: inline-block;
+  color:white;
+  background-color: darkblue;
+  
+}
+
+#Statement{
+  border-style: double; border-color:steelblue; padding: 1em; border-radius: 5px; border-width: 10px;
+  color: white;
+}
+
+#body{
+  background-color: lightsteelblue
+}
