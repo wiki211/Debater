@@ -9,10 +9,11 @@ def cleartype(modeltype):
     ndb.delete_multi(modeltype.query().fetch(keys_only=True))
 
 def queryfield(modeltype, modprop="", contentfilt="", typefilter=True):
+    print (modeltype, modprop, contentfilt)
     if (modprop==""):
         return (modeltype.query().fetch())
     elif typefilter:
-        return modeltype.query().filter(eval("modeltype."+modprop)==(contentfilt)).fetch()
+        return modeltype.query().filter(eval("modeltype."+modprop)==contentfilt).fetch()
     else:
         return modeltype.query().order(eval("modeltype."+modprop)).fetch()
 

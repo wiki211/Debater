@@ -43,13 +43,20 @@ class LoadingHandler(webapp2.RequestHandler):
     def post(self):
         self.response.write(jinja_template.render())
 
-
 class SessionProvideHandler(webapp2.RequestHandler):
     #This is the session code providing area
     def get(self):
         jinja_template = jinja_current_dir.get_template("/templates/classcode.html")
         sessionid = sessionprovide.getsessionid()
+        print(sessionid)
+        print(type(sessionid))
         self.response.set_cookie(key="sessionid", value=str(sessionid))
+        try:
+            cookieid = self.cookies.get("userid")
+            user_id = sessionprovide.usertoken(cookieid,int(sessionid)) # get the user id and append the session to them
+        except:
+            user_id = sessionprovide.usertoken("",int(sessionid)) # get the user id and append the session to them
+        self.response.set_cookie(key="userid", value=str(user_id))
         val = {"session_id":sessionid}
         self.response.write(jinja_template.render(val))
 
@@ -91,6 +98,7 @@ class TeamDisplayHandler(webapp2.RequestHandler):
     def get(self):
         jinja_template = jinja_current_dir.get_template("/templates/teamdisplay.html")
         #this is where the function call would go
+        addpy.teamdisplay()
         self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
         ))
 
