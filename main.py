@@ -108,7 +108,6 @@ class TeamSelectHandler(webapp2.RequestHandler):
     def post(self): #this is after session mgmt
         sessioncode = self.request.cookies.get("sessionid")
 
-
 class TeamDisplayHandler(webapp2.RequestHandler):
     #This handler is made to
     def get(self):
@@ -124,6 +123,7 @@ class TopicPresentHandler(webapp2.RequestHandler):
         jinja_template = jinja_current_dir.get_template("/templates/topicpresent.html")
         #this is where the function call would go
         topicval = topicpresent.exfield("Topics","topic_category","",shuffle=True)
+        print(topicval)
         #self.response.set_cookie(key="topicindex",value=)
         self.response.write(jinja_template.render(topicval))
 
