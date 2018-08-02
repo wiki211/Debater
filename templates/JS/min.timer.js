@@ -16,17 +16,34 @@ var timeHandle;
         mins.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
 
             setTimeout(function () { countdown(minutes - 1.0/60); }, 1000);
-
-
-
-
-
-
         }
-
+    
 }
 
-countdown(2.9);
+function getCookie(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
+function checksessid() {
+    var sessid = getCookie("sessionid");
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            if (xmlHttp.responseText != "False") {
+                countdown(xmlHttp.responseText);
+                return true;
+            } else {
+                console.log("failed; ID not found")
+                return false;
+            }
+    }
+    xmlHttp.open("GET", "/sync?sessid=" + encodeURIComponent(sessid), true); // true for asynchronous 
+    xmlHttp.send(sessid);
+}
+
+checksessid()
 
 // convert_decimal(5.7);
 

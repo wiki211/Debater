@@ -3,8 +3,6 @@
 import webapp2
 import os
 import jinja2
-#import addpy.sessionselect
-#addpy.sessionselect.test()
 from addpy import *
 from models import *
 
@@ -44,6 +42,11 @@ class LoadingHandler(webapp2.RequestHandler):
 
     def post(self):
         self.response.write(jinja_template.render())
+
+class TimerSync(webapp2.RequestHandler):
+    def get(self):
+        sessid = self.request.get('sessid')
+        self.response.write(timersync.timedif(sessid,320))
 
 class MinTimer(webapp2.RequestHandler):
     #This is the Loading page for round one
@@ -239,4 +242,5 @@ app = webapp2.WSGIApplication([
     ('/seed', SeedHandler),
     ('/aboutus', AboutUsHandler),
     ('/check/session.*', SessionChecker),
+    ('/sync', TimerSync),
 ], debug=True)
