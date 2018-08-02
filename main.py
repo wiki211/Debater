@@ -43,13 +43,22 @@ class LoadingHandler(webapp2.RequestHandler):
     def post(self):
         self.response.write(jinja_template.render())
 
-
 class SessionProvideHandler(webapp2.RequestHandler):
     #This is the session code providing area
     def get(self):
         jinja_template = jinja_current_dir.get_template("/templates/classcode.html")
         sessionid = sessionprovide.getsessionid()
         self.response.set_cookie(key="sessionid", value=str(sessionid))
+        try:
+            cookieid = int(self.request.cookies.get("userid"))
+            print('THIS IS THE COOKIE ID')
+            print(cookieid)
+            user_id = sessionprovide.usertoken(cookieid,int(sessionid)) # get the user id and append the session to them
+            print("did you make it")
+        except:
+            print("except is happening ")
+            user_id = sessionprovide.usertoken("",int(sessionid)) # get the user id and append the session to them
+        self.response.set_cookie(key="userid", value=str(user_id))
         val = {"session_id":sessionid}
         self.response.write(jinja_template.render(val))
 
@@ -59,6 +68,17 @@ class Round1Handler(webapp2.RequestHandler):
         jinja_template = jinja_current_dir.get_template("/templates/round1.html")
         self.response.write(jinja_template.render())
 
+class MinTimer(webapp2.RequestHandler):
+    #This is the Loading page for round one
+    def get(self):
+        jinja_template = jinja_current_dir.get_template("/templates/min.timer.html")
+        self.response.write(jinja_template.render())
+class Timer(webapp2.RequestHandler):
+    #This is the Loading page for round one
+    def get(self):
+        jinja_template = jinja_current_dir.get_template("/templates/timer.html")
+        self.response.write(jinja_template.render())
+
 class SessionSelectHandler(webapp2.RequestHandler):
     #This handler is made to have teams select their rooms
     def get(self):
@@ -66,14 +86,17 @@ class SessionSelectHandler(webapp2.RequestHandler):
         #this is where the function call would go
         self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
         ))
-    """
-    def post(self):
-        jinja_template = jinja_current_dir.get_template("/templates/sessionselect.html")
-        #this is where the function call would go
-        
-        self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
-        ))
-    """
+
+class RedirectOrganizeHandler(webapp2.RequestHandler):
+    def get(self):
+        sessionid = int(self.request.cookies.get("sessionid"))
+        try:
+            cookieid = int(self.request.cookies.get("userid"))
+            user_id = sessionprovide.usertoken(cookieid,int(sessionid)) # get the user id and append the session to them
+        except:
+            user_id = sessionprovide.usertoken("",int(sessionid)) # get the user id and append the session to them
+        self.response.set_cookie(key="userid", value=str(user_id))
+        self.redirect("/round1?action=")
 
 class TeamSelectHandler(webapp2.RequestHandler):
     #This handler is made to manage the selection of teams
@@ -83,7 +106,7 @@ class TeamSelectHandler(webapp2.RequestHandler):
         self.response.write(jinja_template.render(  # this is where the dictionary files would be pushed
         ))
     def post(self): #this is after session mgmt
-        sessioncode = self.request.cookies.get("sessionid")        
+        sessioncode = self.request.cookies.get("sessionid")
 
 
 class TeamDisplayHandler(webapp2.RequestHandler):
@@ -91,6 +114,7 @@ class TeamDisplayHandler(webapp2.RequestHandler):
     def get(self):
         jinja_template = jinja_current_dir.get_template("/templates/teamdisplay.html")
         #this is where the function call would go
+        addpy.teamdisplay()
         self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
         ))
 
@@ -100,6 +124,7 @@ class TopicPresentHandler(webapp2.RequestHandler):
         jinja_template = jinja_current_dir.get_template("/templates/topicpresent.html")
         #this is where the function call would go
         topicval = topicpresent.exfield("Topics","topic_category","",shuffle=True)
+        #self.response.set_cookie(key="topicindex",value=)
         self.response.write(jinja_template.render(topicval))
 
 class StancePresentHandler(webapp2.RequestHandler):
@@ -168,6 +193,9 @@ app = webapp2.WSGIApplication([
     ('/loading',LoadingHandler),
     ('/begin', SessionProvideHandler),
     ('/round1', Round1Handler),
+    ('/mintimer', MinTimer),
+    ('/timer', Timer),
+    ('/organize', RedirectOrganizeHandler),
     ('/sess', SessionSelectHandler),
     ('/teamselect', TeamSelectHandler),
     ('/teamdisplay', TeamDisplayHandler),
