@@ -112,7 +112,7 @@ class TopicPresentHandler(webapp2.RequestHandler):
         jinja_template = jinja_current_dir.get_template("/templates/topicpresent.html")
         #this is where the function call would go
         topicval = topicpresent.exfield("Topics","topic_category","",shuffle=True)
-        self.response.set_cookie(key="topicindex",value=)
+        #self.response.set_cookie(key="topicindex",value=)
         self.response.write(jinja_template.render(topicval))
 
 class StancePresentHandler(webapp2.RequestHandler):
