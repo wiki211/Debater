@@ -52,9 +52,13 @@ class SessionProvideHandler(webapp2.RequestHandler):
         print(type(sessionid))
         self.response.set_cookie(key="sessionid", value=str(sessionid))
         try:
-            cookieid = self.cookies.get("userid")
+            cookieid = int(self.request.cookies.get("userid"))
+            print('THIS IS THE COOKIE ID')
+            print(cookieid)
             user_id = sessionprovide.usertoken(cookieid,int(sessionid)) # get the user id and append the session to them
+            print("did you make it")
         except:
+            print("except is happening ")
             user_id = sessionprovide.usertoken("",int(sessionid)) # get the user id and append the session to them
         self.response.set_cookie(key="userid", value=str(user_id))
         val = {"session_id":sessionid}
@@ -121,6 +125,7 @@ class TopicPresentHandler(webapp2.RequestHandler):
         jinja_template = jinja_current_dir.get_template("/templates/topicpresent.html")
         #this is where the function call would go
         topicval = topicpresent.exfield("Topics","topic_category","",shuffle=True)
+        #self.response.set_cookie(key="topicindex",value=)
         self.response.write(jinja_template.render(topicval))
 
 class StancePresentHandler(webapp2.RequestHandler):

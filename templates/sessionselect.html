@@ -22,26 +22,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
 
     <!--Let browser know website is optimized for mobile-->
+    <link rel="stylesheet" type="text/css" href="CSS/sessionselect.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Debater</title>
     <!--<link rel="stylesheet" type="text/css" href="app-stylesheets/boring-style.css">-->
   </head>
   <body style="padding-right:5%; padding-left:5%;">
   <!-- s12 m5-->
-  <div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s6">
-          <input id="input_text" type="text" data-length="10" value="">
-          <label for="input_text">Enter your Game Code</label>
-        </div>
-      </div>
-    </form>
+  <h2 class="center" style="color: white;">Join an existing <b>Debater!</b> session</h2>
+  <div style="vertical-align: middle">
+    <div class="row" >
+      <form class="col s4 offset-s4">
+        <p>
+          <div class="input-field s6 offset-s3">
+            <input placeholder="Enter Session Code" class="white wobble" id="input_text" type="text" data-length="10" value="" required>
+          </div>
+        </p>
+      </form>
+    </div>
+  <div class="row center">
+    <a class="col s2 offset-s5 waves-effect waves-light btn black" onclick=checksessid()>Join Session</a>
+  </div>
   </div>
 
-
-
-    <a class="waves-effect waves-light btn" onclick=checksessid()>Go!</a>
     <script src="JS/sesscheck.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>

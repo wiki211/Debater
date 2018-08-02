@@ -27,27 +27,25 @@ def getsessionid():
     #make session entity code HEREEEEE
     ss = adminmodels.Sessions(sessid=new_sess_id,vote_game='[[0,0,0],[0,0,0],[0,0,0]]')
     ss.put()
-    time.sleep(4)
+    time.sleep(2)
     print("session with %d was input" % new_sess_id)
     print(type(new_sess_id))
     return new_sess_id
 
 def usertoken(userid, sessionid):
+    print(genfunc.queryfield(usermodels.User, "user_id", (userid)))
     if userid == "" or genfunc.queryfield(usermodels.User, "user_id", userid) == []: #no user data 
-        new_user_id = random.randint(10000000,99999999)
-        uu = usermodels.User(user_id=new_user_id, sessions=[sessionid])
+        userid = random.randint(10000000,99999999)
+        uu = usermodels.User(user_id=userid, sessions=[sessionid])
         uu.put()
     else:
         uu = genfunc.queryfield(usermodels.User, "user_id", userid)[0]
+        print("ELSE and ")
+        print(uu.sessions)
         uu.sessions.append(sessionid)
         uu.put()
-    print(sessionid)
-    print(type(sessionid))        
-    s = adminmodels.Sessions.query().fetch()
-    for elem in s:
-        print elem.sessid   
     s = genfunc.queryfield(adminmodels.Sessions,"sessid",int(sessionid))[0]
     #print("S: {}".format(s))
-    s.playernames.append(userid)
+    s.playernames.append(int(userid))
     s.put()
-    return new_user_id
+    return userid
