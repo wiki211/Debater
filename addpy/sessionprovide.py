@@ -33,7 +33,6 @@ def getsessionid():
     return new_sess_id
 
 def usertoken(userid, sessionid):
-    print(genfunc.queryfield(usermodels.User, "user_id", (userid)))
     if userid == "" or genfunc.queryfield(usermodels.User, "user_id", userid) == []: #no user data 
         userid = random.randint(10000000,99999999)
         uu = usermodels.User(user_id=userid, sessions=[sessionid])
