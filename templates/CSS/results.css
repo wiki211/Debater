@@ -7,9 +7,10 @@ display: inline-block;
 
 #btnb{
   display: inline-block;
-  color:white;
-  background-color: darkblue;
   
+  color:white;
+  background-color: darkblue;s
+  text-align: right
 }
 
 #Statement{
