@@ -48,8 +48,6 @@ class SessionProvideHandler(webapp2.RequestHandler):
     def get(self):
         jinja_template = jinja_current_dir.get_template("/templates/classcode.html")
         sessionid = sessionprovide.getsessionid()
-        print(sessionid)
-        print(type(sessionid))
         self.response.set_cookie(key="sessionid", value=str(sessionid))
         try:
             cookieid = int(self.request.cookies.get("userid"))
@@ -81,8 +79,6 @@ class Timer(webapp2.RequestHandler):
         jinja_template = jinja_current_dir.get_template("/templates/timer.html")
         self.response.write(jinja_template.render())
 
-
-
 class SessionSelectHandler(webapp2.RequestHandler):
     #This handler is made to have teams select their rooms
     def get(self):
@@ -90,14 +86,17 @@ class SessionSelectHandler(webapp2.RequestHandler):
         #this is where the function call would go
         self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
         ))
-    """
-    def post(self):
-        jinja_template = jinja_current_dir.get_template("/templates/sessionselect.html")
-        #this is where the function call would go
 
-        self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
-        ))
-    """
+class RedirectOrganizeHandler(webapp2.RequestHandler):
+    def get(self):
+        sessionid = int(self.request.cookies.get("sessionid"))
+        try:
+            cookieid = int(self.request.cookies.get("userid"))
+            user_id = sessionprovide.usertoken(cookieid,int(sessionid)) # get the user id and append the session to them
+        except:
+            user_id = sessionprovide.usertoken("",int(sessionid)) # get the user id and append the session to them
+        self.response.set_cookie(key="userid", value=str(user_id))
+        self.redirect("/round1?action=")
 
 class TeamSelectHandler(webapp2.RequestHandler):
     #This handler is made to manage the selection of teams
@@ -196,7 +195,7 @@ app = webapp2.WSGIApplication([
     ('/round1', Round1Handler),
     ('/mintimer', MinTimer),
     ('/timer', Timer),
-
+    ('/organize', RedirectOrganizeHandler),
     ('/sess', SessionSelectHandler),
     ('/teamselect', TeamSelectHandler),
     ('/teamdisplay', TeamDisplayHandler),
