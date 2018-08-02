@@ -18,7 +18,7 @@ def modifyndb(typeclass, inpname, selectvalue):
 
 class Sessions(ndb.Model):
     sessid = ndb.IntegerProperty(required=True) #8 digit number that allows room entrance
-    playernames  = ndb.StringProperty(repeated=True) #list of player names
+    playernames  = ndb.IntegerProperty(repeated=True) #list of player names
     #list of votes for and against a team. Structured as a 3x3 matrix,
     #where each row represents a game and each column a team
     #structure is nested lists, stored a string before input
