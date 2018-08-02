@@ -46,7 +46,7 @@ class LoadingHandler(webapp2.RequestHandler):
 class TimerSync(webapp2.RequestHandler):
     def get(self):
         sessid = self.request.get('sessid')
-        self.response.write(timersync.timedif(sessid,320))
+        self.response.write(timersync.timedif(sessid,420))
 
 class MinTimer(webapp2.RequestHandler):
     #This is the Loading page for round one

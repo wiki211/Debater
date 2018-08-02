@@ -1,3 +1,4 @@
+
 var timeHandle;
    function countdown(minutes) {
     var mins = Math.floor(minutes)
@@ -27,12 +28,22 @@ function getCookie(name) {
 }
 
 function checksessid() {
+    document.getElementById("timer").classList.add("paused");
+    document.body.style.removeProperty("-webkit-animation-play-state")
     var sessid = getCookie("sessionid");
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             if (xmlHttp.responseText != "False") {
+                timeleft = xmlHttp.responseText
                 countdown(xmlHttp.responseText);
+                setTimeout(function(){
+                    document.getElementById('Statement2').innerHTML = "to DEBATE";
+                    console.log("this is happeninge??");
+                    //document.body.style.webkitAnimationPlayState = "running";
+                    countdown(5);
+                },(timeleft*60+10)*1000)
+                
                 return true;
             } else {
                 console.log("failed; ID not found")

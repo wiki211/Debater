@@ -8,7 +8,7 @@
 }
 
 #body{
-  background-color: blueviolet
+  background-color: blueviolet;
 }
 
 #Statement{
@@ -26,4 +26,48 @@
   color: white;
   position:relative;
   bottom: 40px
+}
+
+
+
+@keyframes bgcolor {
+    0% {
+        background-color: blueviolet;
+    }
+    100% {
+        background-color: #568fd8
+    }
+    
+}
+
+@keyframes bordercolor {
+    0% {
+        border-color:rebeccapurple
+    }
+    100% {
+        border-color:rgb(85, 228, 233)
+    }
+}
+
+body {
+    -webkit-animation: bgcolor 20s ;
+    animation: bgcolor 10s ;
+    -webkit-animation-direction: alternate;
+    animation-direction: alternate;
+    animation-fill-mode: forwards;
+}
+
+#timer {
+    -webkit-animation: bordercolor 20s ;
+    animation: bordercolor 10s ;
+    -webkit-animation-direction: alternate;
+    animation-direction: alternate;
+    animation-fill-mode: forwards;
+}
+
+.pause {
+    -webkit-animation-play-state: paused !important; 
+    -moz-animation-play-state: paused !important; 
+    -o-animation-play-state: paused !important;
+    animation-play-state: paused !important;
 }
