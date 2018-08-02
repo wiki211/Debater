@@ -23,11 +23,12 @@ class Sessions(ndb.Model):
     #where each row represents a game and each column a team
     #structure is nested lists, stored a string before input
     vote_game = ndb.StringProperty(required=True)
-    team_one = ndb.IntegerProperty(repeated=True)
-    team_two = ndb.IntegerProperty(repeated=True)
-    team_three = ndb.IntegerProperty(repeated=True)
+    team_1 = ndb.IntegerProperty(repeated=True)
+    team_2 = ndb.IntegerProperty(repeated=True)
+    team_3 = ndb.IntegerProperty(repeated=True)
     #topics_provided = ndb.JsonProperty(repeated=True) #structured in the form [[question, answer1, answer2]]
-    topic_one = ndb.StringProperty(repeated=True)
-    topic_two = ndb.StringProperty(repeated=True)
-    topic_three = ndb.StringProperty(repeated=True)
+    topic_1 = ndb.StringProperty(repeated=True)
+    topic_2 = ndb.StringProperty(repeated=True)
+    topic_3 = ndb.StringProperty(repeated=True)
     session_start = ndb.DateTimeProperty(required=True)
+    round_num = ndb.IntegerProperty(required=True)

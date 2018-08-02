@@ -33,7 +33,7 @@ def getsessionid():
         for topic in topicpresent.exfield("Topics","topic_category","",shuffle=True)["topic"]:
             tp.append([topic.topic_content,topic.topic_option_1,topic.topic_option_2])
     ss = adminmodels.Sessions(sessid=new_sess_id,vote_game='[[0,0,0],[0,0,0],[0,0,0]]',
-        topic_one=tp[0],topic_two=tp[1],topic_three=tp[2],session_start=datetime.datetime.now())
+        topic_1=tp[0],topic_2=tp[1],topic_3=tp[2],session_start=datetime.datetime.now(),round_num=1)
     ss.put()
     time.sleep(2)
     print("session with %d was input" % new_sess_id)
