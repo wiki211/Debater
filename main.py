@@ -66,6 +66,19 @@ class Round1Handler(webapp2.RequestHandler):
         jinja_template = jinja_current_dir.get_template("/templates/round1.html")
         self.response.write(jinja_template.render())
 
+class MinTimer(webapp2.RequestHandler):
+    #This is the Loading page for round one
+    def get(self):
+        jinja_template = jinja_current_dir.get_template("/templates/min.timer.html")
+        self.response.write(jinja_template.render())
+class Timer(webapp2.RequestHandler):
+    #This is the Loading page for round one
+    def get(self):
+        jinja_template = jinja_current_dir.get_template("/templates/timer.html")
+        self.response.write(jinja_template.render())
+
+
+
 class SessionSelectHandler(webapp2.RequestHandler):
     #This handler is made to have teams select their rooms
     def get(self):
@@ -77,7 +90,7 @@ class SessionSelectHandler(webapp2.RequestHandler):
     def post(self):
         jinja_template = jinja_current_dir.get_template("/templates/sessionselect.html")
         #this is where the function call would go
-        
+
         self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
         ))
     """
@@ -90,7 +103,7 @@ class TeamSelectHandler(webapp2.RequestHandler):
         self.response.write(jinja_template.render(  # this is where the dictionary files would be pushed
         ))
     def post(self): #this is after session mgmt
-        sessioncode = self.request.cookies.get("sessionid")        
+        sessioncode = self.request.cookies.get("sessionid")
 
 
 class TeamDisplayHandler(webapp2.RequestHandler):
@@ -176,6 +189,9 @@ app = webapp2.WSGIApplication([
     ('/loading',LoadingHandler),
     ('/begin', SessionProvideHandler),
     ('/round1', Round1Handler),
+    ('/mintimer', MinTimer),
+    ('/timer', Timer),
+
     ('/sess', SessionSelectHandler),
     ('/teamselect', TeamSelectHandler),
     ('/teamdisplay', TeamDisplayHandler),
