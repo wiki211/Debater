@@ -48,11 +48,29 @@
       </div>
     </div>
   <form class="" action="/mintimer" method="get">
-      <button class="btn waves-effect waves-light pink lighten-3 hoverable" type="submit" name="action">Go!
+      <button class="btn waves-effect waves-light pink lighten-3 hoverable" type="submit" name="action" onclick = "starttime()">Go!
       <i class="material-icons right">send</i>
     </button>
     </form>
   </div>
+  <script>
+    function starttime() {
+        var sessid = getCookie("sessionid");
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function () {
+          if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            if (xmlHttp.responseText != "False") {
+              countdown(xmlHttp.responseText);
+              return true;
+            } else {
+              console.log("failed; ID not found")
+              return false;
+            }
+        }
+        xmlHttp.open("GET", "/sync?sessid=" + encodeURIComponent(sessid), true); // true for asynchronous 
+        xmlHttp.send(sessid);
+      }
+  </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
   </body>
 </html>

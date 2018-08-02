@@ -53,16 +53,11 @@ class MinTimer(webapp2.RequestHandler):
     def get(self):
         jinja_template = jinja_current_dir.get_template("/templates/min.timer.html")
         self.response.write(jinja_template.render())
-class Timer(webapp2.RequestHandler):
-    #This is the Loading page for round one
-    def get(self):
-        jinja_template = jinja_current_dir.get_template("/templates/timer.html")
-        self.response.write(jinja_template.render())
 
 class TimerPresentHandler(webapp2.RequestHandler):
     #This handler is made to present the timer - potential to be merged with StancePresentHandler or given only to judges
     def get(self):
-        jinja_template = jinja_current_dir.get_template("/templates/timer.html")
+        jinja_template = jinja_current_dir.get_template("/templates/mintimer.html")
         #this is where the function call would go
         self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
         ))
@@ -155,7 +150,7 @@ class Round1Handler(webapp2.RequestHandler):
         jinja_template = jinja_current_dir.get_template("/templates/round1.html")
         self.response.write(jinja_template.render())
 
-class TopicPresentHandler(webapp2.RequestHandler):
+class TopicPresentHandler(webapp2.RequestHandler): #/topic
     #This handler is made to present the debate topic
     def get(self):
         jinja_template = jinja_current_dir.get_template("/templates/topicpresent.html")
@@ -199,6 +194,30 @@ class EndHandler(webapp2.RequestHandler):
         self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
         ))
 
+app = webapp2.WSGIApplication([
+    ('/', WelcomeHandler),
+    ('/loading',LoadingHandler),
+    ('/begin', SessionProvideHandler), 
+    ('/round1', Round1Handler),
+    ('/mintimer', MinTimer),
+    #('/timer', Timer),
+    ('/organize', RedirectOrganizeHandler),
+    ('/sess', SessionSelectHandler),
+    #('/teamselect', TeamSelectHandler),
+    #('/teamdisplay', TeamDisplayHandler),
+    ('/topic', TopicPresentHandler),
+    ('/preptopic', StancePresentHandler),
+    ('/judge', VoteHandler),
+    #('/timer', TimerPresentHandler),
+    ('/continue', ContinueHandler),
+    ('/end', EndHandler),
+    ('/seed', SeedHandler),
+    ('/aboutus', AboutUsHandler),
+    ('/check/session.*', SessionChecker),
+    ('/sync', TimerSync),
+], debug=True)
+
+
 """ DEPRECATED OR UNUSED """
 """
 class TeamSelectHandler(webapp2.RequestHandler):
@@ -219,28 +238,12 @@ class TeamDisplayHandler(webapp2.RequestHandler):
         addpy.teamdisplay()
         self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
         ))
+class Timer(webapp2.RequestHandler):
+    #This is the Loading page for round one
+    def get(self):
+        jinja_template = jinja_current_dir.get_template("/templates/timer.html")
+        self.response.write(jinja_template.render())
+
 
 """
 
-app = webapp2.WSGIApplication([
-    ('/', WelcomeHandler),
-    ('/loading',LoadingHandler),
-    ('/begin', SessionProvideHandler), 
-    ('/round1', Round1Handler),
-    ('/mintimer', MinTimer),
-    ('/timer', Timer),
-    ('/organize', RedirectOrganizeHandler),
-    ('/sess', SessionSelectHandler),
-    #('/teamselect', TeamSelectHandler),
-    #('/teamdisplay', TeamDisplayHandler),
-    ('/topic', TopicPresentHandler),
-    ('/preptopic', StancePresentHandler),
-    ('/judge', VoteHandler),
-    ('/timer', TimerPresentHandler),
-    ('/continue', ContinueHandler),
-    ('/end', EndHandler),
-    ('/seed', SeedHandler),
-    ('/aboutus', AboutUsHandler),
-    ('/check/session.*', SessionChecker),
-    ('/sync', TimerSync),
-], debug=True)
