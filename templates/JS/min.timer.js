@@ -38,11 +38,14 @@ function checksessid() {
                 timeleft = xmlHttp.responseText
                 countdown(xmlHttp.responseText);
                 setTimeout(function(){
-                    document.getElementById('Statement2').innerHTML = "to DEBATE";
+                    document.getElementById('Statement2').innerHTML = "to <b>DEBATE!</b>";
                     console.log("this is happeninge??");
                     //document.body.style.webkitAnimationPlayState = "running";
                     countdown(5);
-                },(timeleft*60+10)*1000)
+                },((timeleft*60+10)*1000))
+                setTimeout(function () {
+                    window.location.replace("/preptopic")
+                }, ((timeleft * 60 + 10) * 1000)+5*60)
                 
                 return true;
             } else {

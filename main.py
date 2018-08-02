@@ -46,7 +46,7 @@ class LoadingHandler(webapp2.RequestHandler):
 class TimerSync(webapp2.RequestHandler):
     def get(self):
         sessid = self.request.get('sessid')
-        self.response.write(timersync.timedif(sessid,420))
+        self.response.write(timersync.timedif(sessid,100))
 
 class MinTimer(webapp2.RequestHandler):
     #This is the Loading page for round one
@@ -119,21 +119,14 @@ class RedirectOrganizeHandler(webapp2.RequestHandler): #sets roundnum cookie, te
 
 class StancePresentHandler(webapp2.RequestHandler):
     #This handler is made to present the debate stance
-    """
-    000.099 is Food
-    100.199 is Miscellaneous
-    200.299 is Memes
-    300.399 is Pop Culture
-    400.499 is Technology
-    """
     def get(self):
         conversionmatrix = [[0,1,2],[2,0,1],[1,2,0]]
         jinja_template = jinja_current_dir.get_template("/templates/topicpresent.html")
         #this is where the function call would go
         teamnum = int(self.request.cookies.get("teamnum"))
-        print(teamnum)
         sessioncode = self.request.cookies.get("sessionid")
         roundnum = topicpresent.getroundnum(sessioncode)
+        #reset time 
         print("This is roundnum %d" % roundnum)
         self.response.set_cookie(key="roundnum",value=str(roundnum+1))
         if conversionmatrix[roundnum-1][teamnum-1] == 0:
@@ -144,11 +137,10 @@ class StancePresentHandler(webapp2.RequestHandler):
             self.redirect("/topic")
 
 """ INTERMEDIATE SITES """
-class Round1Handler(webapp2.RequestHandler):
-    #This is the Loading page for round one
+class WaitHandler(webapp2.RequestHandler):
+    #this page is used to wait until judges have voted
     def get(self):
-        jinja_template = jinja_current_dir.get_template("/templates/round1.html")
-        self.response.write(jinja_template.render())
+        pass
 
 class TopicPresentHandler(webapp2.RequestHandler): #/topic
     #This handler is made to present the debate topic
@@ -173,8 +165,22 @@ class VoteHandler(webapp2.RequestHandler):
         #this is where the function call would go
         #WE NEED THIS TO UPDATE SO THE ROUND MOVES ON !!!!! 
         sessid = self.request.cookies.get("sessionid")
-        cur_round = votehandler.updateroundnum(sessid)
+        status, cur_round = votehandler.updateroundnum(sessid)
+        if status: #if the number of rounds has exceeded 3
+            self.redirect("/end")
         self.response.write(jinja_template.render({"cur_round" : cur_round}))
+
+class VotingHandler(webapp2.RequestHandler):
+    def get(self):
+        jinja_template = jinja_current_dir.get_template("/templates/teamjudge.html")
+        roundnum = topicpresent.getroundnum(sessioncode)
+        sessioncode = self.request.cookies.get("sessionid")
+        topic, stance1 = topicpresent.gettopic(roundnum, 1, sessioncode)
+        topic, stance2 = topicpresent.gettopic(roundnum, 2, sessioncode)
+        random.shuffle(stance)
+
+        self.response.write(jinja_template.render({"option_1" : stance[0], "option_2": stance[1] }))
+        
 
 class ContinueHandler(webapp2.RequestHandler):
     #This handler is made to redirect to next page
@@ -195,26 +201,27 @@ class EndHandler(webapp2.RequestHandler):
         ))
 
 app = webapp2.WSGIApplication([
-    ('/', WelcomeHandler),
-    ('/loading',LoadingHandler),
-    ('/begin', SessionProvideHandler), 
-    ('/round1', Round1Handler),
-    ('/mintimer', MinTimer),
-    #('/timer', Timer),
-    ('/organize', RedirectOrganizeHandler),
+    ('/', WelcomeHandler), 
+    ('/aboutus', AboutUsHandler),
+    ('/begin', SessionProvideHandler),
     ('/sess', SessionSelectHandler),
-    #('/teamselect', TeamSelectHandler),
-    #('/teamdisplay', TeamDisplayHandler),
+    ('/loading',LoadingHandler),
+    ('/mintimer', MinTimer),
+    ('/organize', RedirectOrganizeHandler),
     ('/topic', TopicPresentHandler),
     ('/preptopic', StancePresentHandler),
-    ('/judge', VoteHandler),
-    #('/timer', TimerPresentHandler),
+    ('/vote', VoteHandler), 
+    ('/voting', VotingHandler),
     ('/continue', ContinueHandler),
-    ('/end', EndHandler),
-    ('/seed', SeedHandler),
-    ('/aboutus', AboutUsHandler),
+    ('/end', EndHandler), 
     ('/check/session.*', SessionChecker),
-    ('/sync', TimerSync),
+    ('/seed', SeedHandler),
+    ('/sync', TimerSync), 
+    #('/round1', Round1Handler),
+    #('/teamdisplay', TeamDisplayHandler),
+    #('/teamselect', TeamSelectHandler),
+    #('/timer', Timer),
+    #('/timer', TimerPresentHandler),
 ], debug=True)
 
 
@@ -242,6 +249,12 @@ class Timer(webapp2.RequestHandler):
     #This is the Loading page for round one
     def get(self):
         jinja_template = jinja_current_dir.get_template("/templates/timer.html")
+        self.response.write(jinja_template.render())
+
+class Round1Handler(webapp2.RequestHandler):
+    #This is the Loading page for round one
+    def get(self):
+        jinja_template = jinja_current_dir.get_template("/templates/round1.html")
         self.response.write(jinja_template.render())
 
 
