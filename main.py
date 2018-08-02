@@ -12,16 +12,8 @@ from models import *
 #please update the __all__ = [] with specified module names
 
 #remember, you can get this by searching for jinja2 google app engine
-jinja_current_dir = jinja2.Environment(
-    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
-    extensions=['jinja2.ext.autoescape'],
-    autoescape=True)
-
-#The following Handlers are made to
-#the specification detailed in "Game Design" under User Design
-
-#Data seeding is provided by the following functions:
-#dataimport.importdata(dataimport.getdata("/Users/demouser/Desktop/cssi-project/Debater/data/topics_cssi.csv"))
+jinja_current_dir = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
+    extensions=['jinja2.ext.autoescape'],autoescape=True)
 
 """ INFO PAGES """
 
@@ -44,7 +36,8 @@ class SeedHandler(webapp2.RequestHandler):
             "./data/topics_cssi.csv"))
 
 class LoadingHandler(webapp2.RequestHandler):
-    #This is the welcome page
+    #Before : 
+    #After : 
     def get(self):
         jinja_template = jinja_current_dir.get_template("/templates/loading.html")
         self.response.write(jinja_template.render())
