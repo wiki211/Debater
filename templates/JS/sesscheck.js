@@ -5,8 +5,9 @@ function checksessid() {
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             if(xmlHttp.responseText=="True") {
-                document.body.style.backgroundColor = "red";
-                window.location.replace("/round1?action=");
+                document.cookie = "sessionid="+sessid;
+                window.location.replace("/organize")
+                // window.location.replace("/round1?action=");
                 return true;
             } else {
                 document.getElementById('input_text').style.animation = "none";
