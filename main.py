@@ -81,8 +81,6 @@ class Timer(webapp2.RequestHandler):
         jinja_template = jinja_current_dir.get_template("/templates/timer.html")
         self.response.write(jinja_template.render())
 
-
-
 class SessionSelectHandler(webapp2.RequestHandler):
     #This handler is made to have teams select their rooms
     def get(self):
