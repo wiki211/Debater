@@ -2,10 +2,7 @@ import sys
 sys.path.insert(0, '../')
 from models import *
 import random
-
-def createsess(inputsessid, score='[]'):
-    dd = adminmodels.Sessions(sessid=inputsessid,vote_game=score)
-    dd.put()
+import time
 
 def getsessionid():
     # array of previous values
@@ -28,5 +25,29 @@ def getsessionid():
         sess_id[0].genval.append(new_sess_id)
         sess_id[0].put()
     #make session entity code HEREEEEE
-    createsess(new_sess_id, score='[[0,0,0],[0,0,0],[0,0,0]]')
+    ss = adminmodels.Sessions(sessid=new_sess_id,vote_game='[[0,0,0],[0,0,0],[0,0,0]]')
+    ss.put()
+    time.sleep(4)
+    print("session with %d was input" % new_sess_id)
+    print(type(new_sess_id))
     return new_sess_id
+
+def usertoken(userid, sessionid):
+    if userid == "" or genfunc.queryfield(usermodels.User, "user_id", userid) == []: #no user data 
+        new_user_id = random.randint(10000000,99999999)
+        uu = usermodels.User(user_id=new_user_id, sessions=[sessionid])
+        uu.put()
+    else:
+        uu = genfunc.queryfield(usermodels.User, "user_id", userid)[0]
+        uu.sessions.append(sessionid)
+        uu.put()
+    print(sessionid)
+    print(type(sessionid))        
+    s = adminmodels.Sessions.query().fetch()
+    for elem in s:
+        print elem.sessid   
+    s = genfunc.queryfield(adminmodels.Sessions,"sessid",int(sessionid))[0]
+    #print("S: {}".format(s))
+    s.playernames.append(userid)
+    s.put()
+    return new_user_id
