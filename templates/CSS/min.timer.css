@@ -2,13 +2,13 @@
   font-size: 90px;
   text-align: center;
   float: center;
-  border-style: double; border-color:thistle; padding: 1em; border-radius: 5px; border-width: 10px;
+  border-style: double; border-color:rebeccapurple; padding: 1em; border-radius: 5px; border-width: 10px;
   color: white;
 
 }
 
 #body{
-  background-color: lavender
+  background-color: blueviolet
 }
 
 #Statement{
