@@ -64,3 +64,7 @@ def getteamnum(uid, sessionid):
     s.team_counter = s.team_counter % 3 + 1 
     s.put()
     return val
+
+def checkresponses(round, sessionid):
+    s = genfunc.queryfield(adminmodels.Sessions,"sessid",int(sessionid))[0]
+    #s.

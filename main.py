@@ -187,7 +187,7 @@ class VoteHandler(webapp2.RequestHandler):
         status, cur_round = votehandler.updateroundnum(sessid)
         if status: #if the number of rounds has exceeded 3
             self.redirect("/end")
-        self.response.write(jinja_template.render({"cur_round" : cur_round-1}))
+        self.response.write(jinja_template.render({"cur_round" : cur_round}))
 
 class VotingHandler(webapp2.RequestHandler): #this handler redirects and processes votes
     def get(self):
@@ -198,8 +198,6 @@ class VotingHandler(webapp2.RequestHandler): #this handler redirects and process
         topic, stance1 = topicpresent.gettopic(roundnum, 1, sessioncode)
         topic, stance2 = topicpresent.gettopic(roundnum, 2, sessioncode)
         self.response.write(jinja_template.render({"option_1" : stance1, "option_2": stance2 }))
-    def post(self):
-        response = self.request.get('button_inp')
 
 class ContinueHandler(webapp2.RequestHandler):
     #This handler is made to redirect to next page
@@ -208,6 +206,33 @@ class ContinueHandler(webapp2.RequestHandler):
         #this is where the function call would go
         self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
         ))
+
+class WaitForVotesHandler(webapp2.RequestHandler):
+    def get(self):
+        jinja_template = jinja_current_dir.get_template("/templates/welcome.html")
+        sessid = self.request.cookies.get("sessionid")
+        status, cur_round = votehandler.updateroundnum(sessid)
+        self.response.write("currently waiting for votes")
+
+class GetVotesHandler(webapp2.RequestHandler):
+    def get(self):
+        pass
+
+class AddVoteHandler(webapp2.RequestHandler):
+    def get(self):
+        sessid = self.request.cookies.get("sessionid")
+        team = self.request.cookies.get("teamnum")
+        votehandler.updatevotetally(sessid, team)
+        self.response.write("True")
+
+class VotesInHandler(webapp2.RequestHandler):
+    def get(self):
+        pass
+        """
+        response_status = sessionprovide.checkresponses()
+        time_count = 
+        if time_count > 15 or num_of_response == 
+        """
 
 """ ENDPOINT SITES """
 
@@ -235,7 +260,10 @@ app = webapp2.WSGIApplication([
     ('/end', EndHandler), 
     ('/check/session.*', SessionChecker),
     ('/seed', SeedHandler),
-    ('/sync', TimerSync), 
+    ('/sync', TimerSync),
+    ('/wait', WaitForVotesHandler),
+    ('/votesin', VotesInHandler), 
+    ('/givevote', AddVoteHandler), 
     #('/round1', Round1Handler),
     #('/teamdisplay', TeamDisplayHandler),
     #('/teamselect', TeamSelectHandler),

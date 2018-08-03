@@ -33,18 +33,37 @@
   </div>
     <div class="split left">
       <div class="valign center centered">
-        <form action="/voting" method="post" name="button_input">
-          <button id='btna2' class="waves-effect waves-light btn-large" type="submit" value="option1">{{ option_1 }}</button>
-        </form>
+          <button id='btna2' class="waves-effect waves-light btn-large" type="submit" onclick="addvote(1)">{{ option_1 }}</button>
       </div>
     </div>
     <div class="split right">
     <div class="valign center centered">
-      <form action="/voting" method="post" name = "button_input">
-        <button id='btna' class="waves-effect waves-light btn-large" type="submit" value="option2">{{ option_2 }}</button>
-      </form>
+        <button id='btna' class="waves-effect waves-light btn-large" type="submit" onclick="addvote(2)">{{ option_2 }}</button>
     </div>
   </div>
+    <script>
+      function getCookie(name) {
+          var value = "; " + document.cookie;
+          var parts = value.split("; " + name + "=");
+          if (parts.length == 2) return parts.pop().split(";").shift();
+        }
+      function addvote(inputnumber) {
+          sessid = getCookie("sessionid")
+          var xmlHttp = new XMLHttpRequest();
+          xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+              if (xmlHttp.responseText == "True") {
+                window.location.replace("/wait")
+                return true;
+              } else {
+                return false;
+              }
+          }
+          xmlHttp.open("GET", "/givevote?session_id=" + encodeURIComponent(sessid)+"&option=" +inputnumber, true); 
+          // true for asynchronous 
+          xmlHttp.send(sessid);
+        }
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
   </body>
 </html>
