@@ -1,6 +1,6 @@
 import sys
 sys.path.insert(0, '/Users/demouser/Desktop/cssi-project/Debater/')
-from models import contentmodels, genfunc, adminmodels
+from models import contentmodels, genfunc
 import random
 
 def querytopic(topic_category="", fieldval = ""):
@@ -20,15 +20,3 @@ def exfield(modeltype, modprop, contentfilt="", shuffle=False):
         random.shuffle(outval)
     outputdict = {"topic": outval}
     return outputdict
-
-def gettopic(roundnum, indexnum, sessionid):
-    outval = genfunc.queryfield(adminmodels.Sessions, "sessid", int(sessionid))[0]
-    print(outval)
-    questions = eval("outval.topic_"+str(roundnum))
-    maintopic = questions[0]
-    stance = questions[int(indexnum)]
-    return maintopic,stance
-
-def getroundnum(sessid):
-    outval = genfunc.queryfield(adminmodels.Sessions, "sessid", int(sessid))[0]
-    return outval.round_num
