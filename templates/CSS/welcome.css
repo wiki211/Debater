@@ -13,10 +13,10 @@ width:100%;
 
 
 #slogan{
-position: absolute;
-top:33%;
+position: relative;
+top:200px;
 font-family: Georgia;
-font-size: 30px;
+font-size: 35px;
 color:#808080;
 background-color: white;
 padding-left: 5%;
@@ -24,21 +24,17 @@ padding-right: 5%;
 padding-top: 5%;
 padding-bottom: 5%;
 box-shadow:5px 10px #CDDEE7;
-width:50%;
-height: 30%;
+width:100%;
 flex-wrap: wrap;
-left:5%;
+
 
 }
 
 #img{
-top: 19%;
-right:7%;
-width:28%;
+top:15%;
+width:30%;
 position: absolute;
- box-shadow: 5px 10px #888888;
 }
-
 
 
 .footer{
