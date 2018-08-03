@@ -93,6 +93,8 @@ class SessionProvideHandler(webapp2.RequestHandler): #/BEGIN - PROVIDES ID
             print("except is happening ")
             user_id = sessionprovide.usertoken("",int(sessionid)) # get the user id and append the session to them
         self.response.set_cookie(key="userid", value=str(user_id))
+        team_num = sessionprovide.getteamnum(user_id, sessionid)
+        self.response.set_cookie(key="teamnum", value = str(team_num))
         val = {"session_id":sessionid}
         self.response.write(jinja_template.render(val))
 
@@ -109,7 +111,7 @@ class SessionSelectHandler(webapp2.RequestHandler):
 class RedirectOrganizeHandler(webapp2.RequestHandler): #sets roundnum cookie, teamnum cookie, 
     def get(self):
         sessionid = int(self.request.cookies.get("sessionid"))
-        self.response.set_cookie(key="teamnum", value=str(2))
+        #self.response.set_cookie(key="teamnum", value=str(2))
         try:
             cookieid = int(self.request.cookies.get("userid"))
             user_id = sessionprovide.usertoken(cookieid,int(sessionid)) # get the user id and append the session to them
@@ -124,18 +126,31 @@ class StancePresentHandler(webapp2.RequestHandler):
         conversionmatrix = [[0,1,2],[2,0,1],[1,2,0]]
         jinja_template = jinja_current_dir.get_template("/templates/topicpresent.html")
         #this is where the function call would go
-        teamnum = int(self.request.cookies.get("teamnum"))
+        
         sessioncode = int(self.request.cookies.get("sessionid"))
+        session = genfunc.queryfield(adminmodels.Sessions,"sessid", sessioncode)[0]
+        #sessionid = session.sessid
+
+        try:
+            cookieid = int(self.request.cookies.get("userid"))
+            user_id = sessionprovide.usertoken(cookieid,int(sessioncode)) # get the user id and append the session to them
+        except:
+            user_id = sessionprovide.usertoken("",int(sessioncode)) # get the user id and append the session to them
+
+        try:
+            teamnum = int(self.request.cookies.get("teamnum"))
+        except:
+            teamnum = int(sessionprovide.getteamnum(user_id, sessioncode))
         roundnum = topicpresent.getroundnum(sessioncode)
         #reset time 
-        session = genfunc.queryfield(adminmodels.Sessions,"sessid", sessioncode)[0]
         session.session_start = datetime.datetime.now()
         session.put()
         print("This is roundnum %d" % roundnum)
-        self.response.set_cookie(key="roundnum",value=str(roundnum+1))
+        #self.response.set_cookie(key="roundnum",value=str(roundnum+1))
+
         if conversionmatrix[roundnum-1][teamnum-1] == 0:
             self.response.set_cookie(key="index", value=str(0))
-            self.redirect("/judge") #REDIRECT TO JUDGE
+            self.redirect("/vote") #REDIRECT TO JUDGE
         else:
             self.response.set_cookie(key="index", value=str(conversionmatrix[roundnum-1][teamnum-1]))
             self.redirect("/topic")
@@ -172,7 +187,7 @@ class VoteHandler(webapp2.RequestHandler):
         status, cur_round = votehandler.updateroundnum(sessid)
         if status: #if the number of rounds has exceeded 3
             self.redirect("/end")
-        self.response.write(jinja_template.render({"cur_round" : cur_round}))
+        self.response.write(jinja_template.render({"cur_round" : cur_round-1}))
 
 class VotingHandler(webapp2.RequestHandler): #this handler redirects and processes votes
     def get(self):
@@ -185,7 +200,6 @@ class VotingHandler(webapp2.RequestHandler): #this handler redirects and process
         self.response.write(jinja_template.render({"option_1" : stance1, "option_2": stance2 }))
     def post(self):
         response = self.request.get('button_inp')
-        r
 
 class ContinueHandler(webapp2.RequestHandler):
     #This handler is made to redirect to next page

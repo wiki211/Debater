@@ -32,3 +32,4 @@ class Sessions(ndb.Model):
     topic_3 = ndb.StringProperty(repeated=True)
     session_start = ndb.DateTimeProperty(required=True)
     round_num = ndb.IntegerProperty(required=True)
+    team_counter = ndb.IntegerProperty(required=True)
