@@ -28,21 +28,49 @@
   </head>
   <body style="padding-right:5%; padding-left:5%;">
   <!-- s12 m5-->
-  <div id= 'text' class=" container teal lighten-4 center-align">
+  <div id= 'text' class=" container cyan center-align">
     <div class="row center-align">
       <div class="col s12 center-align">
-        <div class="card cyan lighten-3 center-align z-depth-3">
-          <span class="white-text">Your Topic is: <br>{{ topic[0].topic_content }}
-          </span>
+        <div class="card center-align hoverable activator">
+          <div class="card-content activator pink lighten-1">
+            <span class="card-title activator white-text text-darken-4">Your topic & stance
+            </span>
+            <b>{{ topic }}</b><br>
+            <p><a href="#" style="font-size: 20px; color: white;" class="activator">Click to reveal stance</a></p> 
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4"> <div class="left">Stance</div> 
+              <i class="material-icons right">close</i>
+            </span> <br>
+            <b style="color: black; font-size: 60px;">{{ stance }}</b>
+          </div>
         </div>
       </div>
     </div>
   <form class="" action="/mintimer" method="get">
-      <button class="btn waves-effect waves-light cyan lighten-3" type="submit" name="action">Go!
+      <button class="btn waves-effect waves-light pink lighten-3 hoverable" type="submit" name="action" onclick = "starttime()">Go!
       <i class="material-icons right">send</i>
     </button>
     </form>
   </div>
+  <script>
+    function starttime() {
+        var sessid = getCookie("sessionid");
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function () {
+          if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            if (xmlHttp.responseText != "False") {
+              countdown(xmlHttp.responseText);
+              return true;
+            } else {
+              console.log("failed; ID not found")
+              return false;
+            }
+        }
+        xmlHttp.open("GET", "/sync?sessid=" + encodeURIComponent(sessid), true); // true for asynchronous 
+        xmlHttp.send(sessid);
+      }
+  </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
   </body>
 </html>
