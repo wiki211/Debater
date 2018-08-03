@@ -7,4 +7,4 @@ def timedif(sessionid, timeallowed):
     session = genfunc.queryfield(adminmodels.Sessions, "sessid", int(sessionid))[0]
     timedelta = session.session_start - datetime.datetime.now()
     secdelta = timedelta.total_seconds() + timeallowed
-    return round(secdelta/60, 3)
+    return round(secdelta/60, 6)

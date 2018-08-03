@@ -5,7 +5,8 @@ import os
 import jinja2
 from addpy import *
 from models import *
-
+import datetime
+import random
 #this imports all modules under the addpy folder
 #please update the __all__ = [] with specified module names
 
@@ -124,9 +125,12 @@ class StancePresentHandler(webapp2.RequestHandler):
         jinja_template = jinja_current_dir.get_template("/templates/topicpresent.html")
         #this is where the function call would go
         teamnum = int(self.request.cookies.get("teamnum"))
-        sessioncode = self.request.cookies.get("sessionid")
+        sessioncode = int(self.request.cookies.get("sessionid"))
         roundnum = topicpresent.getroundnum(sessioncode)
         #reset time 
+        session = genfunc.queryfield(adminmodels.Sessions,"sessid", sessioncode)[0]
+        session.session_start = datetime.datetime.now()
+        session.put()
         print("This is roundnum %d" % roundnum)
         self.response.set_cookie(key="roundnum",value=str(roundnum+1))
         if conversionmatrix[roundnum-1][teamnum-1] == 0:
@@ -151,7 +155,7 @@ class TopicPresentHandler(webapp2.RequestHandler): #/topic
         # print(topicval)
         #self.response.set_cookie(key="topicindex",value=)
         index = self.request.cookies.get("index")
-        sessioncode = self.request.cookies.get("sessionid")
+        sessioncode = int(self.request.cookies.get("sessionid"))
         roundnum = topicpresent.getroundnum(sessioncode)
         topic, stance = topicpresent.gettopic(roundnum, index, sessioncode)
         print(stance)
@@ -172,11 +176,13 @@ class VoteHandler(webapp2.RequestHandler):
 
 class VotingHandler(webapp2.RequestHandler):
     def get(self):
-        jinja_template = jinja_current_dir.get_template("/templates/teamjudge.html")
+        jinja_template = jinja_current_dir.get_template("/templates/voting.html")
+        sessioncode = int(self.request.cookies.get("sessionid"))
         roundnum = topicpresent.getroundnum(sessioncode)
         sessioncode = self.request.cookies.get("sessionid")
         topic, stance1 = topicpresent.gettopic(roundnum, 1, sessioncode)
         topic, stance2 = topicpresent.gettopic(roundnum, 2, sessioncode)
+        stance = [stance1, stance2]
         random.shuffle(stance)
 
         self.response.write(jinja_template.render({"option_1" : stance[0], "option_2": stance[1] }))

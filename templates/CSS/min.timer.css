@@ -50,16 +50,16 @@
 }
 
 body {
-    -webkit-animation: bgcolor 20s ;
-    animation: bgcolor 10s ;
+    -webkit-animation: bgcolor 20s infinite;
+    animation: bgcolor 10s infinite;
     -webkit-animation-direction: alternate;
     animation-direction: alternate;
     animation-fill-mode: forwards;
 }
 
 #timer {
-    -webkit-animation: bordercolor 20s ;
-    animation: bordercolor 10s ;
+    -webkit-animation: bordercolor 20s infinite;
+    animation: bordercolor 10s infinite;
     -webkit-animation-direction: alternate;
     animation-direction: alternate;
     animation-fill-mode: forwards;
