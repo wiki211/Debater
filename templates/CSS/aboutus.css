@@ -25,7 +25,9 @@ height: 300px;
 }
 
 .bio1{
-
+/* margin-left: 10%;
+margin-top: 10%; */
+/* display: inline-block; */
 margin-top: 10%;
 display: inline-block;
 
@@ -33,11 +35,11 @@ display: inline-block;
 
 .bio2{
 display: inline-block;
-flex: wrap;
+/* flex: wrap; */
 }
 
 .bio3{
 
 display: inline-block;
-flex: wrap;
+/* flex: wrap; */
 }
