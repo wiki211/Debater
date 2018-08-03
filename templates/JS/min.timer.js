@@ -1,21 +1,15 @@
-
 var timeHandle;
    function countdown(minutes) {
     var mins = Math.floor(minutes)
     var seconds = Math.floor((minutes - mins) * 60)
-
    // function convert_decimal(decimal) {
    //   let whole_num = Math.floor(decimal)
    // //   let remainder = decimal - whole_num;
    //   seconds = 60 * remainder;
-
   if( minutes > 0 ) {
       var counter = document.getElementById("timer");
-
-
         counter.innerHTML =
         mins.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-
             setTimeout(function () { countdown(minutes - 1.0/60); }, 1000);
         }
     
@@ -35,18 +29,27 @@ function checksessid() {
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             if (xmlHttp.responseText != "False") {
-                timeleft = xmlHttp.responseText
-                countdown(xmlHttp.responseText);
-                setTimeout(function(){
+                var timeleft = parseFloat(xmlHttp.responseText)
+                if (timeleft >0) { 
+                    countdown(parseFloat(xmlHttp.responseText));
+                    setTimeout(function () {
+                        document.getElementById('Statement2').innerHTML = "to <b>DEBATE!</b>";
+                        console.log("this is happeninge??");
+                        //document.body.style.webkitAnimationPlayState = "running";
+                        countdown((5));
+                    }, (((timeleft) * 60 + 10) * 1000))
+                    setTimeout(function () {
+                        window.location.replace("/preptopic")
+                    }, (((timeleft) * 60 + 10 + 5 * 60) * 1000))
+                } else {
                     document.getElementById('Statement2').innerHTML = "to <b>DEBATE!</b>";
                     console.log("this is happeninge??");
                     //document.body.style.webkitAnimationPlayState = "running";
-                    countdown(5);
-                },((timeleft*60+10)*1000))
-                setTimeout(function () {
-                    window.location.replace("/preptopic")
-                }, ((timeleft * 60 + 10) * 1000)+5*60)
-                
+                    countdown((timeleft + 5.1));
+                    setTimeout(function () {
+                        window.location.replace("/preptopic")
+                    }, (((timeleft) * 60 + 10 + 5 * 60) * 1000))
+                }
                 return true;
             } else {
                 console.log("failed; ID not found")
