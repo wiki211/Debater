@@ -1,35 +1,35 @@
-
-
-
-
 #size{
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
 
 }
 
 #chris {
-width: 300px;
-height: 300px;
+width: 250px;
+height: 250px;
 
 }
 
 .bio1{
+/* margin-left: 10%;
+margin-top: 10%; */
+/* display: inline-block; */
+width: 50%;
+height: 200px;
+
 
 margin-top: 10%;
 display: inline-block;
-
-
 
 }
 
 .bio2{
 display: inline-block;
- flex: wrap;
+/* flex: wrap; */
 }
 
 .bio3{
 
 display: inline-block;
-flex: wrap;
+/* flex: wrap; */
 }
