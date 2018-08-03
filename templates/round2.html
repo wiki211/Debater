@@ -20,46 +20,27 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-<!-- Link to teamselect.css-->
-    <link rel="stylesheet" type="text/css" href="CSS/timer.css">
-    <link href="https://fonts.googleapis.com/css?family=Heebo|Montserrat" rel="stylesheet">
+<link rel="stylesheet" href="CSS/round1.css">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-
     <title>Debater</title>
-
-
-
+    <!--<link rel="stylesheet" type="text/css" href="app-stylesheets/boring-style.css">-->
   </head>
-
-  <body id="body" style="padding-right:5%; padding-left:5%;">
-
-<p class="center" id="Statement">You only have </p>
-
-<div class="hoverable">
-<div id="timer">5:00</div>
+  <body >
+<p id ='roundone'>Round Two</p>
+<div class="progress" #ef5350 red lighten-1>
+    <div class="indeterminate"></div>
 </div>
-<!-- <div id="timer">5:00</div> -->
+<!-- Javascript for loading for 3 seconds -->
 
-<!-- Javascript for loading for 5 min. 5 secs -->
 <script type="text/javascript">
 setTimeout(function () {
- window.location.href= '/votewait'; // the redirect goes here
+ window.location.href= '/topic'; // the redirect goes here
 
-},305000);
+},3000);
 
 </script>
 
-
-
-
-<p class="center" id="Statement2">Remaining</p>
-
-
-
-
-    <script src="JS/timer.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
   </body>
 </html>
