@@ -11,3 +11,11 @@ def updateroundnum(sessid):
     session.put()
     time.sleep(2)
     return False, session.round_num
+
+def updatevotetally(sessid, round, team):
+    session = genfunc.queryfield(adminmodels.Sessions, "sessid", int(sessid))[0]
+    vote_list = eval(session.vote_game)
+    vote_list[round-1][team-1] += 1
+    session.vote_game = str(vote_list)
+    session.put()
+    time.sleep(2)

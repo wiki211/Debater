@@ -174,7 +174,7 @@ class VoteHandler(webapp2.RequestHandler):
             self.redirect("/end")
         self.response.write(jinja_template.render({"cur_round" : cur_round}))
 
-class VotingHandler(webapp2.RequestHandler):
+class VotingHandler(webapp2.RequestHandler): #this handler redirects and processes votes
     def get(self):
         jinja_template = jinja_current_dir.get_template("/templates/voting.html")
         sessioncode = int(self.request.cookies.get("sessionid"))
@@ -182,11 +182,10 @@ class VotingHandler(webapp2.RequestHandler):
         sessioncode = self.request.cookies.get("sessionid")
         topic, stance1 = topicpresent.gettopic(roundnum, 1, sessioncode)
         topic, stance2 = topicpresent.gettopic(roundnum, 2, sessioncode)
-        stance = [stance1, stance2]
-        random.shuffle(stance)
-
-        self.response.write(jinja_template.render({"option_1" : stance[0], "option_2": stance[1] }))
-        
+        self.response.write(jinja_template.render({"option_1" : stance1, "option_2": stance2 }))
+    def post(self):
+        response = self.request.get('button_inp')
+        r
 
 class ContinueHandler(webapp2.RequestHandler):
     #This handler is made to redirect to next page

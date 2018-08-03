@@ -33,14 +33,14 @@
   </div>
     <div class="split left">
       <div class="valign center centered">
-        <form action="/potato" method="get">
-          <button id='btna2' class="waves-effect waves-light btn-large" type="submit" value="option2">{{ option_1 }}</button>
+        <form action="/voting" method="post" name="button_input">
+          <button id='btna2' class="waves-effect waves-light btn-large" type="submit" value="option1">{{ option_1 }}</button>
         </form>
       </div>
     </div>
     <div class="split right">
     <div class="valign center centered">
-      <form action="/potato" method="get">
+      <form action="/voting" method="post" name = "button_input">
         <button id='btna' class="waves-effect waves-light btn-large" type="submit" value="option2">{{ option_2 }}</button>
       </form>
     </div>
