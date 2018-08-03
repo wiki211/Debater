@@ -206,21 +206,6 @@ class EndHandler(webapp2.RequestHandler):
         self.response.write(jinja_template.render(#this is where the dictionary files would be pushed
         ))
 
-
-class AboutUsHandler(webapp2.RequestHandler):
-    def get(self):
-        jinja_template = jinja_current_dir.get_template("/templates/Aboutus.html")
-        self.response.write(jinja_template.render())
-
-        class Howtoplay(webapp2.RequestHandler):
-            def get(self):
-                jinja_template = jinja_current_dir.get_template("/templates/Howto_play.html")
-                self.response.write(jinja_template.render())
-
-
-
-
-
 app = webapp2.WSGIApplication([
     ('/', WelcomeHandler), 
     ('/aboutus', AboutUsHandler),
