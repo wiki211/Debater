@@ -36,7 +36,7 @@
   Choose your team:
 </div> -->
 <div class=" hoverable">
-<p id='Sentence3'>In this round your team will individually vote for the strongest arguments.</p>
+<p id='Sentence3'> <b>Round {{ cur_round }}</b> <br> In this round your team will individually vote for the strongest arguments.</p>
 </div>
 
 <!-- <div id='buttons'>
@@ -52,7 +52,9 @@
 </div> -->
 
 <div class="center-align">
-  <button id='btn3'class="green darken-1  center-align inlign-block waves-effect waves-light btn ">Enter Game!</button>
+  <form action="/voting">
+    <button id='btn3' class="green darken-1  center-align inlign-block waves-effect waves-light btn ">Enter Game!</button>
+  </form>
 </div>
 
 
