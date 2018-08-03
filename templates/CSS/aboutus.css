@@ -15,8 +15,13 @@ height: 250px;
 
 .bio1{
 /* margin-left: 10%;
-margin-top: 10%; */
-/* display: inline-block; */
+/* margin-top: 10%; */
+position: absolute;
+height: auto;
+width:auto;
+max-height: 100%;
+max-width: 40%;
+display: inline-block;
 width: 50%;
 height: 200px;
 
@@ -24,11 +29,11 @@ height: 200px;
 
 .bio2{
 display: inline-block;
-/* flex: wrap; */
+ flex: wrap;
 }
 
 .bio3{
 
 display: inline-block;
-/* flex: wrap; */
+flex: wrap;
 }

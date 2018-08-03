@@ -179,14 +179,13 @@ class AboutUsHandler(webapp2.RequestHandler):
         jinja_template = jinja_current_dir.get_template("/templates/Aboutus.html")
         self.response.write(jinja_template.render())
 
-class SessionChecker(webapp2.RequestHandler): #returns TRUE if the sessid exists, otherwise returns FALSE
-    def get(self):
-        usersessid = int(self.request.get('input_text'))
-        if (sessionselect.checksessionid(usersessid)):
-            self.response.set_cookie(key="sessionid", value=str(usersessid))
-            self.response.write("True")
-        else:
-            self.response.write("False")
+        class Howtoplay(webapp2.RequestHandler):
+            def get(self):
+                jinja_template = jinja_current_dir.get_template("/templates/Howto_play.html")
+                self.response.write(jinja_template.render())
+
+
+
 
 app = webapp2.WSGIApplication([
     ('/', WelcomeHandler),
