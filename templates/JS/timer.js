@@ -1,26 +1,37 @@
 var timeHandle;
-function countdown(minutes) {
-    var seconds = 60;
-    var mins = minutes
-    function click() {
-        var counter = document.getElementById("timer");
-        var current_minutes = mins-1
-        seconds--;
+   function countdown(minutes) {
+    var mins = Math.floor(minutes)
+    var seconds = Math.floor((minutes - mins) * 60)
+
+   // function convert_decimal(decimal) {
+   //   let whole_num = Math.floor(decimal)
+   // //   let remainder = decimal - whole_num;
+   //   seconds = 60 * remainder;
+
+  if( minutes > 0 ) {
+      var counter = document.getElementById("timer");
+
+
         counter.innerHTML =
-        current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-        if( seconds > 0 ) {
-            timeHandle=setTimeout(click, 1000);
-        } else {
+        mins.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
 
-            if(mins > 1){
+            setTimeout(function () { countdown(minutes - 1.0/60); }, 1000);
 
-               // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
-               setTimeout(function () { countdown(mins - 1); }, 1000);
 
-            }
+
+
+
+
         }
-    }
-    click();
+
 }
 
-countdown(5);
+countdown(2.9);
+
+// convert_decimal(5.7);
+
+// function convert_decimal(decimal) {
+//   let whole_num = Math.floor(decimal)
+//   let remainder = decimal - whole_num;
+//   seconds = 60 * remainder;
+// }

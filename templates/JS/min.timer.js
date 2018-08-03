@@ -1,26 +1,68 @@
+
 var timeHandle;
-function countdown(minutes) {
-    var seconds = 60;
-    var mins = minutes
-    function click() {
-        var counter = document.getElementById("timer");
-        var current_minutes = mins-1
-        seconds--;
+   function countdown(minutes) {
+    var mins = Math.floor(minutes)
+    var seconds = Math.floor((minutes - mins) * 60)
+
+   // function convert_decimal(decimal) {
+   //   let whole_num = Math.floor(decimal)
+   // //   let remainder = decimal - whole_num;
+   //   seconds = 60 * remainder;
+
+  if( minutes > 0 ) {
+      var counter = document.getElementById("timer");
+
+
         counter.innerHTML =
-        current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-        if( seconds > 0 ) {
-            timeHandle=setTimeout(click, 1000);
-        } else {
+        mins.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
 
-            if(mins > 1){
-
-               // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
-               setTimeout(function () { countdown(mins - 1); }, 1000);
-
-            }
+            setTimeout(function () { countdown(minutes - 1.0/60); }, 1000);
         }
-    }
-    click();
+    
 }
 
-countdown(1);
+function getCookie(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
+function checksessid() {
+    document.getElementById("timer").classList.add("paused");
+    document.body.style.removeProperty("-webkit-animation-play-state")
+    var sessid = getCookie("sessionid");
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            if (xmlHttp.responseText != "False") {
+                timeleft = xmlHttp.responseText
+                countdown(xmlHttp.responseText);
+                setTimeout(function(){
+                    document.getElementById('Statement2').innerHTML = "to <b>DEBATE!</b>";
+                    console.log("this is happeninge??");
+                    //document.body.style.webkitAnimationPlayState = "running";
+                    countdown(5);
+                },((timeleft*60+10)*1000))
+                setTimeout(function () {
+                    window.location.replace("/preptopic")
+                }, ((timeleft * 60 + 10) * 1000)+5*60)
+                
+                return true;
+            } else {
+                console.log("failed; ID not found")
+                return false;
+            }
+    }
+    xmlHttp.open("GET", "/sync?sessid=" + encodeURIComponent(sessid), true); // true for asynchronous 
+    xmlHttp.send(sessid);
+}
+
+checksessid()
+
+// convert_decimal(5.7);
+
+// function convert_decimal(decimal) {
+//   let whole_num = Math.floor(decimal)
+//   let remainder = decimal - whole_num;
+//   seconds = 60 * remainder;
+// }
